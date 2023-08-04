@@ -10,9 +10,11 @@
   <name>f1db</name>
   <url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>20</maven.compiler.source>
+        <maven.compiler.target>20</maven.compiler.target>
+    </properties>
 
   <dependencies>
     <dependency>
@@ -36,5 +38,10 @@
       <artifactId>hibernate-core</artifactId>
       <version>6.2.7.Final</version>
     </dependency>
+      <dependency>
+          <groupId>org.openjfx</groupId>
+          <artifactId>javafx-graphics</artifactId>
+          <version>20</version>
+      </dependency>
   </dependencies>
 </project>
