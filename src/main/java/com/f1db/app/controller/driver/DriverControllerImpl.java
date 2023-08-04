@@ -8,7 +8,6 @@ import java.util.List;
 public class DriverControllerImpl extends ControllerImpl implements DriverController {
     @Override
     public List<Driver> getAllDriver() {
-        this.getQueryManager().getAllDriver();
-        return null;
+        return this.getQueryManager().getAllDriver();
     }
 }
