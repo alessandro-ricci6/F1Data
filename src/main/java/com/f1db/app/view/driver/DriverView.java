@@ -1,10 +1,10 @@
 package com.f1db.app.view.driver;
 
+import com.f1db.app.controller.driver.DriverController;
 import com.f1db.app.view.AbstractFXView;
 import com.f1db.app.view.pages.Pages;
 import com.f1db.app.view.pages.SceneManager;
 import com.f1db.entity.Driver;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.MenuButton;
@@ -56,7 +56,7 @@ public class DriverView extends AbstractFXView {
 
     @FXML
     void onAddButton() {
-
+        //this.getDriverController()
     }
 
     @Override
@@ -67,7 +67,7 @@ public class DriverView extends AbstractFXView {
     @FXML
     void onAddEngineerClick() {
         //Open a new Stage with the page where you can add the engineer
-        //SceneManager.getInstance().switchPage(new Stage(), Pages.DRIVER);
+        SceneManager.getInstance().switchPage(new Stage(), Pages.ENGINEER);
     }
 
     private void initDriverTable() {
@@ -75,6 +75,24 @@ public class DriverView extends AbstractFXView {
         surnameColumn.setPrefWidth(table.getWidth()/4);
         numberColumn.setPrefWidth(table.getWidth()/4);
         nationalityColumn.setPrefWidth(table.getWidth()/4);
+    }
+
+    @FXML
+    private void onEngineerClick() {
+        SceneManager.getInstance().switchPage(this.getStage(), Pages.ENGINEER);
+    }
+
+    @FXML
+    private void onRaceClick() {
+
+    }
+
+    @FXML
+    private void onTeamClick() {
+
+    }
+    private DriverController getDriverController() {
+        return (DriverController) this.getController();
     }
 }
 
