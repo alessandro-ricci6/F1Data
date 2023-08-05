@@ -61,20 +61,21 @@ public class DriverView extends AbstractFXView {
 
     @Override
     public void init() {
+        initDriverTable();
+    }
 
+    private void initDriverTable() {
+
+        nameColumn.prefWidthProperty().bind(table.widthProperty().divide(4));
+        surnameColumn.prefWidthProperty().bind(table.widthProperty().divide(4));
+        numberColumn.prefWidthProperty().bind(table.widthProperty().divide(4));
+        nationalityColumn.prefWidthProperty().bind(table.widthProperty().divide(4));
     }
 
     @FXML
     void onAddEngineerClick() {
         //Open a new Stage with the page where you can add the engineer
         SceneManager.getInstance().switchPage(new Stage(), Pages.ENGINEER);
-    }
-
-    private void initDriverTable() {
-        nameColumn.setPrefWidth(table.getWidth()/4);
-        surnameColumn.setPrefWidth(table.getWidth()/4);
-        numberColumn.setPrefWidth(table.getWidth()/4);
-        nationalityColumn.setPrefWidth(table.getWidth()/4);
     }
 
     @FXML
@@ -84,7 +85,7 @@ public class DriverView extends AbstractFXView {
 
     @FXML
     private void onRaceClick() {
-
+        SceneManager.getInstance().switchPage(this.getStage(), Pages.RACE);
     }
 
     @FXML

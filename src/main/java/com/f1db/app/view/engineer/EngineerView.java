@@ -3,6 +3,7 @@ package com.f1db.app.view.engineer;
 import com.f1db.app.view.AbstractFXView;
 import com.f1db.app.view.pages.Pages;
 import com.f1db.app.view.pages.SceneManager;
+import com.f1db.entity.Driver;
 import com.f1db.entity.Engineer;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -10,10 +11,10 @@ import javafx.scene.control.*;
 public class EngineerView extends AbstractFXView {
 
     @FXML
-    private TableView<Engineer> table;
+    private TableView<Object> table;
 
     @FXML
-    private TableColumn<Engineer, String> columnDriver;
+    private TableColumn<Driver, String> columnDriver;
 
     @FXML
     private TableColumn<Engineer, String> columnName;
@@ -48,7 +49,7 @@ public class EngineerView extends AbstractFXView {
 
     @FXML
     void onRaceClick() {
-
+        SceneManager.getInstance().switchPage(this.getStage(), Pages.RACE);
     }
 
     @FXML
