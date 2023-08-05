@@ -4,12 +4,14 @@ package com.f1db.app.view.pages;
 import com.f1db.app.controller.Controller;
 import com.f1db.app.controller.driver.DriverControllerImpl;
 import com.f1db.app.controller.engineer.EngineerControllerImpl;
+import com.f1db.app.controller.race.RaceControllerImpl;
 
 /**
  * Enum containing all availbale pages.
  */
 public enum Pages {
 
+    RACE("RaceView.fxml", new RaceControllerImpl()),
     ENGINEER("EngineerView.fxml", new EngineerControllerImpl()),
     DRIVER("DriverView.fxml", new DriverControllerImpl());
     private final String name;

@@ -53,6 +53,7 @@ public class Standing {
 
         Standing standing = (Standing) o;
 
+        if(position != standing.position) return false;
         if(race != standing.race) return false;
         if(driver != standing.driver) return false;
         if(points != null ? points.equals(standing.points) : standing.points != null) return false;
@@ -62,7 +63,8 @@ public class Standing {
 
     @Override
     public int hashCode() {
-        int result = race;
+        int result = position;
+        result = result * 31 + race;
         result = result * 31 + driver;
         result = result * 31 + (points != null ? points.hashCode() : 0);
 
