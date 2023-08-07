@@ -47,11 +47,11 @@ public class Track {
 
     @Basic
     @Column(name = "length")
-    private Double length;
+    private Integer length;
     public double getLength() {
         return length;
     }
-    public void setLength(double length) {
+    public void setLength(Integer length) {
         this.length = length;
     }
 
