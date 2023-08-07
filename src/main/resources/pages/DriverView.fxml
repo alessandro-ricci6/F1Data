@@ -105,6 +105,11 @@
                         </AnchorPane>
                   </content>
                 </Tab>
+                  <Tab text="Driver Contract">
+                    <content>
+                      <fx:include source="ContractView.fxml"/>
+                    </content>
+                  </Tab>
               </tabs>
             </TabPane>
          </children>

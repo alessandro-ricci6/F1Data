@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.f1db.app.view.contract.ContractView">
+   <children>
+      <TableView fx:id="contractTable" layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <columns>
+            <TableColumn fx:id="driverColumn" prefWidth="210.0" text="Driver" />
+            <TableColumn fx:id="expColumn" prefWidth="210.0" text="Contract Expiration" />
+            <TableColumn fx:id="teamColumn" prefWidth="210.0" text="Team" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
