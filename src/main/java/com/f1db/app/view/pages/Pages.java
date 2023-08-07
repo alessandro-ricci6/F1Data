@@ -5,12 +5,16 @@ import com.f1db.app.controller.Controller;
 import com.f1db.app.controller.driver.DriverControllerImpl;
 import com.f1db.app.controller.engineer.EngineerControllerImpl;
 import com.f1db.app.controller.race.RaceControllerImpl;
+import com.f1db.app.controller.standing.StandingControllerImpl;
+import com.f1db.app.controller.team.TeamControllerImpl;
 
 /**
  * Enum containing all availbale pages.
  */
 public enum Pages {
 
+    TEAM("TeamView.fxml", new TeamControllerImpl()),
+    STANDING("StandingView.fxml", new StandingControllerImpl()),
     RACE("RaceView.fxml", new RaceControllerImpl()),
     ENGINEER("EngineerView.fxml", new EngineerControllerImpl()),
     DRIVER("DriverView.fxml", new DriverControllerImpl());

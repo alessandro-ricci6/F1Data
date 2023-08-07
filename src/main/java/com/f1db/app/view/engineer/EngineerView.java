@@ -54,7 +54,7 @@ public class EngineerView extends AbstractFXView {
 
     @FXML
     void onTeamClick() {
-
+        SceneManager.getInstance().switchPage(this.getStage(), Pages.TEAM);
     }
 
     @Override

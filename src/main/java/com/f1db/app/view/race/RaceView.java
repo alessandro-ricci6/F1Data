@@ -7,6 +7,7 @@ import com.f1db.app.view.pages.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class RaceView extends AbstractFXView {
 
@@ -104,12 +105,12 @@ public class RaceView extends AbstractFXView {
 
     @FXML
     void onNextClick() {
-
+        SceneManager.getInstance().switchPage(new Stage(), Pages.STANDING);
     }
 
     @FXML
     void onTeamClick() {
-
+        SceneManager.getInstance().switchPage(this.getStage(), Pages.TEAM);
     }
 
     private RaceController getRaceController() {

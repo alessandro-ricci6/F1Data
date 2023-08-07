@@ -90,7 +90,7 @@ public class DriverView extends AbstractFXView {
 
     @FXML
     private void onTeamClick() {
-
+        SceneManager.getInstance().switchPage(this.getStage(), Pages.TEAM);
     }
     private DriverController getDriverController() {
         return (DriverController) this.getController();
