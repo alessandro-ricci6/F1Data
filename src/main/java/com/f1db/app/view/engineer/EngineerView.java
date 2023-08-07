@@ -1,5 +1,6 @@
 package com.f1db.app.view.engineer;
 
+import com.f1db.app.controller.engineer.EngineerController;
 import com.f1db.app.view.AbstractFXView;
 import com.f1db.app.view.pages.Pages;
 import com.f1db.app.view.pages.SceneManager;
@@ -39,7 +40,11 @@ public class EngineerView extends AbstractFXView {
 
     @FXML
     void onAddClick() {
-
+        Engineer engineer = new Engineer();
+        engineer.setName(inputName.getText());
+        engineer.setNationality(inputNationality.getText());
+        engineer.setSurname(inputSurname.getText());
+        this.getEngineerController().addEngineer(engineer);
     }
 
     @FXML
@@ -60,5 +65,9 @@ public class EngineerView extends AbstractFXView {
     @Override
     public void init() {
 
+    }
+
+    private EngineerController getEngineerController() {
+        return (EngineerController) this.getController();
     }
 }

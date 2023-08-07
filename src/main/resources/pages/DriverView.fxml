@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuButton?>
@@ -42,12 +43,6 @@
                               <TextField fx:id="inputSurname" layoutX="98.0" layoutY="139.0" promptText="Surname" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="85.0" />
                               <TextField fx:id="inputNumber" layoutX="361.0" layoutY="75.0" promptText="Number" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="140.0" />
                               <TextField fx:id="inputNationality" layoutX="320.0" layoutY="139.0" promptText="Nationality" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="195.0" />
-                              <MenuButton fx:id="engineer" layoutX="55.0" layoutY="247.0" mnemonicParsing="false" text="MenuButton" AnchorPane.leftAnchor="130.0" AnchorPane.rightAnchor="361.0" AnchorPane.topAnchor="250.0">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
-                                </items>
-                              </MenuButton>
                               <Text layoutX="49.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
                               <Text layoutX="49.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname" />
                               <Text layoutX="49.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number" />
@@ -55,6 +50,7 @@
                               <Text layoutX="49.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Engineer" />
                               <Button layoutX="516.0" layoutY="250.0" mnemonicParsing="false" onAction="#onAddButton" text="Add" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="50.0" />
                               <Button layoutX="294.0" layoutY="250.0" mnemonicParsing="false" onAction="#onAddEngineerClick" text="Add engineer" />
+                              <ChoiceBox fx:id="engineer" layoutX="130.0" layoutY="250.0" prefWidth="150.0" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -107,7 +103,7 @@
                 </Tab>
                   <Tab text="Driver Contract">
                     <content>
-                      <fx:include source="ContractView.fxml"/>
+                      <fx:include source="ContractView.fxml" />
                     </content>
                   </Tab>
               </tabs>

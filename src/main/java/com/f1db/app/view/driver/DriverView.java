@@ -5,13 +5,17 @@ import com.f1db.app.view.AbstractFXView;
 import com.f1db.app.view.pages.Pages;
 import com.f1db.app.view.pages.SceneManager;
 import com.f1db.entity.Driver;
+import com.f1db.entity.Engineer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DriverView extends AbstractFXView {
 
@@ -25,7 +29,7 @@ public class DriverView extends AbstractFXView {
     private LineChart<?, ?> driverGraph;
 
     @FXML
-    private MenuButton engineer;
+    private ChoiceBox<String> engineer;
 
     @FXML
     private TextField inputName;
@@ -54,22 +58,44 @@ public class DriverView extends AbstractFXView {
     @FXML
     private TableView<Driver> table;
 
-    @FXML
-    void onAddButton() {
-        //this.getDriverController()
-    }
-
     @Override
     public void init() {
         initDriverTable();
+        initEngineerMenu();
     }
 
     private void initDriverTable() {
-
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
+        nationalityColumn.setCellValueFactory(new PropertyValueFactory<>("nationality"));
         nameColumn.prefWidthProperty().bind(table.widthProperty().divide(4));
         surnameColumn.prefWidthProperty().bind(table.widthProperty().divide(4));
         numberColumn.prefWidthProperty().bind(table.widthProperty().divide(4));
         nationalityColumn.prefWidthProperty().bind(table.widthProperty().divide(4));
+        ObservableList<Driver> drivers = FXCollections.observableArrayList(this.getDriverController().getAllDriver());
+        table.setItems(drivers);
+
+    }
+
+    private void initEngineerMenu() {
+        List<Engineer> engList = this.getDriverController().getQueryManager().getAllEngineer();
+        List<String> surnameList = new ArrayList<>();
+
+        engList.forEach(e -> surnameList.add(e.getSurname()));
+        engineer.setItems(FXCollections.observableList(surnameList));
+    }
+
+    @FXML
+    void onAddButton() {
+        int engId = 0;
+        for (var eng : this.getDriverController().getQueryManager().getAllEngineer()) {
+            if(eng.getSurname().equals(engineer.getValue())){
+                engId = eng.getEngineerId();
+            }
+        }
+        this.getDriverController().addDriver(inputName.getText(), inputSurname.getText(), inputNationality.getText(),
+                Integer.parseInt(inputNumber.getText()), engId);
     }
 
     @FXML

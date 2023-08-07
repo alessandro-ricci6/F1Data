@@ -10,4 +10,13 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
     public List<Driver> getAllDriver() {
         return this.getQueryManager().getAllDriver();
     }
+
+    @Override
+    public boolean addDriver(String name, String surname, String nationality, int number, int engineer) {
+        if(name == null || surname == null || nationality == null) {
+            return false;
+        }
+        this.getQueryManager().addDriver(name, surname, nationality, number, engineer);
+        return true;
+    }
 }
