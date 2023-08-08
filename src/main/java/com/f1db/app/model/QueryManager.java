@@ -1,9 +1,6 @@
 package com.f1db.app.model;
 
-import com.f1db.entity.Championship;
-import com.f1db.entity.Contract;
-import com.f1db.entity.Driver;
-import com.f1db.entity.Engineer;
+import com.f1db.entity.*;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -66,6 +63,47 @@ public class QueryManager {
 
     public List<Championship> getAllChampionship(){
         return entityManager.createNativeQuery("SELECT * FROM championship", Championship.class)
+                .getResultList();
+    }
+
+    public void addStanding(Standing standing) {
+        transaction.begin();
+        entityManager.createNativeQuery("INSERT INTO standing (driver_driverId, race_raceId, position, points)" +
+                "VALUES (:driverId, :raceId, :position, :points)")
+                .setParameter("driverId", standing.getDriver())
+                .setParameter("raceId", standing.getRace())
+                .setParameter("position", standing.getPosition())
+                .setParameter("points", standing.getPoints())
+                .executeUpdate();
+        transaction.commit();
+    }
+
+    public void addRace(Race race) {
+        transaction.begin();
+        entityManager.createNativeQuery("INSERT INTO race (laps, round, track_trackId, championship_championshipId)" +
+                "VALUES (:laps, :round, :track, :championship)")
+                .setParameter("laps", race.getLaps())
+                .setParameter("round", race.getRound())
+                .setParameter("track", race.getTrack())
+                .setParameter("championship", race.getChampionship())
+                .executeUpdate();
+        transaction.commit();
+    }
+
+    public void addTrack(Track track) {
+        transaction.begin();
+        entityManager.createNativeQuery("INSERT INTO track (name, country, city, length)" +
+                "VALUES (:name, :country, :city, :length)")
+                .setParameter("name", track.getName())
+                .setParameter("country", track.getCountry())
+                .setParameter("city", track.getCity())
+                .setParameter("length", track.getLength())
+                .executeUpdate();
+        transaction.commit();
+    }
+
+    public List<Track> getAlltrack(){
+        return entityManager.createNativeQuery("SELECT * FROM track", Track.class)
                 .getResultList();
     }
 }

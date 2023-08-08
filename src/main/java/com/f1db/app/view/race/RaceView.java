@@ -5,6 +5,7 @@ import com.f1db.app.view.AbstractFXView;
 import com.f1db.app.view.pages.Pages;
 import com.f1db.app.view.pages.SceneManager;
 import com.f1db.entity.Championship;
+import com.f1db.entity.Track;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -36,7 +37,7 @@ public class RaceView extends AbstractFXView {
     private TextField inputRound;
 
     @FXML
-    private MenuButton inputTrack;
+    private ChoiceBox<String> inputTrack;
 
     @FXML
     private TableColumn<?, ?> lapsColumn;
@@ -73,6 +74,7 @@ public class RaceView extends AbstractFXView {
         initRaceTable();
         initStandingTable();
         initChampMenu();
+        initInputTrak();
     }
 
     private void initRaceTable() {
@@ -97,9 +99,16 @@ public class RaceView extends AbstractFXView {
         inputChampionship.setItems(FXCollections.observableList(yearList));
     }
 
+    private void initInputTrak (){
+        List<String> nameList = new ArrayList<>();
+        List<Track> trackList = this.getRaceController().getQueryManager().getAlltrack();
+        trackList.forEach(t -> nameList.add(t.getName()));
+        inputTrack.setItems(FXCollections.observableList(nameList));
+    }
+
     @FXML
     void onAddTrackClick() {
-
+        SceneManager.getInstance().switchPage(new Stage(), Pages.TRACK);
     }
 
     @FXML

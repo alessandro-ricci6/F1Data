@@ -7,12 +7,13 @@ import com.f1db.app.controller.engineer.EngineerControllerImpl;
 import com.f1db.app.controller.race.RaceControllerImpl;
 import com.f1db.app.controller.standing.StandingControllerImpl;
 import com.f1db.app.controller.team.TeamControllerImpl;
+import com.f1db.app.controller.track.TrackControllerImpl;
 
 /**
  * Enum containing all availbale pages.
  */
 public enum Pages {
-
+    TRACK("TrackView.fxml", new TrackControllerImpl()),
     TEAM("TeamView.fxml", new TeamControllerImpl()),
     STANDING("StandingView.fxml", new StandingControllerImpl()),
     RACE("RaceView.fxml", new RaceControllerImpl()),
