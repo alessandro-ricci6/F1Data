@@ -37,7 +37,7 @@ public class Race {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "track")
+    @Column(name = "track_trackId")
     private int track;
     public int getTrack() {
         return track;
@@ -48,7 +48,7 @@ public class Race {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "championship")
+    @Column(name = "championship_championshipId")
     private int championship;
     public int getChampionship() {
         return championship;

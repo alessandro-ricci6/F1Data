@@ -5,6 +5,7 @@ import com.f1db.app.view.AbstractFXView;
 import com.f1db.app.view.pages.Pages;
 import com.f1db.app.view.pages.SceneManager;
 import com.f1db.entity.Championship;
+import com.f1db.entity.Race;
 import com.f1db.entity.Track;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -128,6 +129,20 @@ public class RaceView extends AbstractFXView {
 
     @FXML
     void onNextClick() {
+        Race race = new Race();
+        for (var c :this.getRaceController().getQueryManager().getAllChampionship()){
+            if(c.getYear() == inputChampionship.getValue()){
+                race.setChampionship(c.getChampionshipId());
+            }
+        }
+        race.setLaps(Integer.parseInt(inputLaps.getText()));
+        race.setRound(Integer.parseInt(inputRound.getText()));
+        for(var t : this.getRaceController().getQueryManager().getAlltrack()){
+            if(t.getName().equals(inputTrack.getValue())){
+                race.setTrack(t.getTrackId());
+            }
+        }
+        this.getRaceController().addRace(race);
         SceneManager.getInstance().switchPage(new Stage(), Pages.STANDING);
     }
 
