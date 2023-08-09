@@ -39,13 +39,13 @@ public class Contract {
     }
 
     @Basic
-    @Column(name = "deadline")
-    private int deadline;
-    public int getDeadline() {
-        return deadline;
+    @Column(name = "expiration")
+    private int expiration;
+    public int getExpiration() {
+        return expiration;
     }
-    public void setDeadline(int deadline) {
-        this.deadline = deadline;
+    public void setExpiration(int expiration) {
+        this.expiration = expiration;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Contract {
         if(contractId != contract.contractId) return false;
         if(team != contract.team) return false;
         if(driver != contract.driver) return false;
-        if(deadline != contract.deadline) return false;
+        if(expiration != contract.expiration) return false;
 
         return true;
     }
@@ -68,7 +68,7 @@ public class Contract {
         int result = contractId;
         result = result * 31 + team;
         result = result * 31 + driver;
-        result = result * 31 + deadline;
+        result = result * 31 + expiration;
 
         return result;
     }

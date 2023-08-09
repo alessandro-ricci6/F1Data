@@ -8,6 +8,7 @@ import com.f1db.entity.Driver;
 import com.f1db.entity.Engineer;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class EngineerView extends AbstractFXView {
 
@@ -64,6 +65,18 @@ public class EngineerView extends AbstractFXView {
 
     @Override
     public void init() {
+
+    }
+
+    private void initEngineerTable() {
+        columnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        columnDriver.setCellValueFactory(new PropertyValueFactory<>("driver"));
+        columnNationality.setCellValueFactory(new PropertyValueFactory<>("nationality"));
+        columnSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        columnName.prefWidthProperty().bind(table.widthProperty().divide(4));
+        columnDriver.prefWidthProperty().bind(table.widthProperty().divide(4));
+        columnNationality.prefWidthProperty().bind(table.widthProperty().divide(4));
+        columnSurname.prefWidthProperty().bind(table.widthProperty().divide(4));
 
     }
 

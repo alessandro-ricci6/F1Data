@@ -3,7 +3,6 @@ package com.f1db.app.model;
 import com.f1db.entity.*;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class QueryManager {
@@ -53,6 +52,17 @@ public class QueryManager {
                 .getResultList();
     }
 
+    public void addContract(Contract contract) {
+        transaction.begin();
+        entityManager.createNativeQuery("INSERT INTO contract (driver_driverId, team_teamId, expiration)" +
+                "VALUES (:driver, :team, :expiration)")
+                .setParameter("driver", contract.getDriver())
+                .setParameter("team", contract.getTeam())
+                .setParameter("expiration", contract.getExpiration())
+                .executeUpdate();
+        transaction.commit();
+    }
+
     public void addChampionship(int year) {
         transaction.begin();
         entityManager.createNativeQuery("INSERT INTO championship (year) VALUES (:year)")
@@ -78,6 +88,18 @@ public class QueryManager {
         transaction.commit();
     }
 
+    public List<Standing> getStandingByRace (int raceId) {
+        return entityManager.createNativeQuery("SELECT * FROM standing WHERE race_raceID= :raceId", Standing.class)
+                .setParameter("raceId", raceId)
+                .getResultList();
+    }
+
+    public List<Standing> getStandingByDriver(int driverId) {
+        return entityManager.createNativeQuery("SELECT * FROM driver WHERE driver_driverId = :driverId", Standing.class)
+                .setParameter("driverId", driverId)
+                .getResultList();
+    }
+
     public void addRace(Race race) {
         transaction.begin();
         entityManager.createNativeQuery("INSERT INTO race (laps, round, track_trackId, championship_championshipId)" +
@@ -88,6 +110,17 @@ public class QueryManager {
                 .setParameter("championship", race.getChampionship())
                 .executeUpdate();
         transaction.commit();
+    }
+
+    public List<Race> getRaceByYear(Championship championship) {
+        return entityManager.createNativeQuery("SELECT * FROM race WHERE championship_championshipId = :champ")
+                .setParameter("champ", championship.getChampionshipId())
+                .getResultList();
+    }
+
+    public List<Race> getAllRaces() {
+        return entityManager.createNativeQuery("SELECT * FROM race", Race.class)
+                .getResultList();
     }
 
     public void addTrack(Track track) {
@@ -106,4 +139,56 @@ public class QueryManager {
         return entityManager.createNativeQuery("SELECT * FROM track", Track.class)
                 .getResultList();
     }
+
+    public void addTeam(Team team) {
+        transaction.begin();
+        entityManager.createNativeQuery("INSERT INTO team (name, nationality, headquarter)" +
+                "VALUES (:name, :nationality, :headquarter)")
+                .setParameter("name", team.getName())
+                .setParameter("nationality", team.getNationality())
+                .setParameter("headquarter", team.getHeadquarter())
+                .executeUpdate();
+        transaction.commit();
+    }
+
+    public List<Team> getAllTeam() {
+        return entityManager.createNativeQuery("SELECT * FROM team", Team.class)
+                .getResultList();
+    }
+
+    public void addDirector(Director director) {
+        transaction.begin();
+        entityManager.createNativeQuery("INSERT INTO director (role, name, surname, nationality, team_teamId)" +
+                "VALUES (:role, :name, :surname, :nationality, :team)")
+                .setParameter("role", director.getRole())
+                .setParameter("name", director.getName())
+                .setParameter("surname", director.getSurname())
+                .setParameter("nationality", director.getNationality())
+                .setParameter("team", director.getTeam())
+                .executeUpdate();
+        transaction.commit();
+    }
+
+    public List<Director> getAlldirectors() {
+        return entityManager.createNativeQuery("SELECT * FROM director", Director.class)
+                .getResultList();
+    }
+
+    public void addCar(Car car) {
+        transaction.begin();
+        entityManager.createNativeQuery("INSERT INTO car (name, powerunit, team_teamId)" +
+                "VALUES (:name, :powerunit, :team)")
+                .setParameter("name", car.getCarName())
+                .setParameter("powerunit", car.getPowerUnit())
+                .setParameter("team", car.getTeam())
+                .executeUpdate();
+        transaction.commit();
+    }
+
+    public Car getCarByTeam(Team team) {
+        return (Car) entityManager.createNativeQuery("SELECT * FROM car WHERE team_teamId = :team")
+                .setParameter("team", team.getTeamId())
+                .getSingleResult();
+    }
+
 }
