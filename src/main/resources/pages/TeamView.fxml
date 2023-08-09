@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -7,8 +9,10 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.f1db.app.view.team.TeamView">
   <children>
@@ -27,6 +31,25 @@
       <children>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <tabs>
+                  <Tab text="Add Team">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="inputName" layoutX="30.0" layoutY="44.0" promptText="Name" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="30.0" />
+                              <TextField fx:id="inputHeadquarter" layoutX="75.0" layoutY="136.0" promptText="Headquarter" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="85.0" />
+                              <TextField fx:id="inputNationality" layoutX="84.0" layoutY="205.0" promptText="Nationality" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="140.0" />
+                              <ChoiceBox fx:id="driver1" layoutX="47.0" layoutY="264.0" prefWidth="150.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="195.0" />
+                              <ChoiceBox fx:id="driver2" layoutX="290.0" layoutY="105.0" prefWidth="150.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="250.0" />
+                              <Text layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Team Name" />
+                              <Text layoutX="14.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Team Headquarter" />
+                              <Text layoutX="14.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Team Nationality" />
+                              <Text layoutX="14.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Driver" />
+                              <Text layoutX="14.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Second Driver" />
+                              <Button layoutX="521.0" layoutY="250.0" mnemonicParsing="false" onAction="#onAddClick" prefHeight="25.0" prefWidth="64.0" text="Add" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
                 <Tab text="Team List">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">

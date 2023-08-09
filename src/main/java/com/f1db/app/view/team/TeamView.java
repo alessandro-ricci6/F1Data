@@ -1,36 +1,65 @@
 package com.f1db.app.view.team;
 
+import com.f1db.app.model.mixedTable.TeamCarTable;
 import com.f1db.app.view.AbstractFXView;
-import com.f1db.app.view.pages.Pages;
-import com.f1db.app.view.pages.SceneManager;
+import com.f1db.app.view.pages.*;
 import com.f1db.entity.Car;
 import com.f1db.entity.Team;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TeamView extends AbstractFXView {
 
     @FXML
-    private TableColumn<Car, String> carNameColumn;
+    private TextField inputHeadquarter;
 
     @FXML
-    private TableColumn<Team, String> headquarterColumn;
+    private TextField inputName;
 
     @FXML
-    private TableColumn<Team, String> nameColumn;
+    private TextField inputNationality;
 
     @FXML
-    private TableColumn<Team, String> nationalityColumn;
+    private ChoiceBox<?> driver1;
 
     @FXML
-    private TableColumn<Car, String> puSuppColumn;
+    private ChoiceBox<?> driver2;
 
     @FXML
-    private TableView<Object> table;
+    private TableColumn<TeamCarTable, String> carNameColumn;
+
+    @FXML
+    private TableColumn<TeamCarTable, String> headquarterColumn;
+
+    @FXML
+    private TableColumn<TeamCarTable, String> nameColumn;
+
+    @FXML
+    private TableColumn<TeamCarTable, String> nationalityColumn;
+
+    @FXML
+    private TableColumn<TeamCarTable, String> puSuppColumn;
+
+    @FXML
+    private TableView<TeamCarTable> table;
 
     @Override
     public void init() {
+
+    }
+
+    private void initTeamTable() {
+        carNameColumn.setCellValueFactory(new PropertyValueFactory<>("carName"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nationalityColumn.setCellValueFactory(new PropertyValueFactory<>("nationality"));
+        headquarterColumn.setCellValueFactory(new PropertyValueFactory<>("headquarter"));
+        puSuppColumn.setCellValueFactory(new PropertyValueFactory<>("powerUnit"));
+        carNameColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
+        nameColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
+        nationalityColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
+        headquarterColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
+        puSuppColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
 
     }
 
@@ -47,5 +76,10 @@ public class TeamView extends AbstractFXView {
     @FXML
     void onRaceClick() {
         SceneManager.getInstance().switchPage(this.getStage(), Pages.RACE);
+    }
+
+    @FXML
+    void onAddClick() {
+
     }
 }
