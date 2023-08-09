@@ -1,13 +1,18 @@
 package com.f1db.app.view.team;
 
+import com.f1db.app.controller.team.TeamController;
 import com.f1db.app.model.mixedTable.TeamCarTable;
 import com.f1db.app.view.AbstractFXView;
 import com.f1db.app.view.pages.*;
 import com.f1db.entity.Car;
 import com.f1db.entity.Team;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TeamView extends AbstractFXView {
 
@@ -46,7 +51,7 @@ public class TeamView extends AbstractFXView {
 
     @Override
     public void init() {
-
+        initTeamTable();
     }
 
     private void initTeamTable() {
@@ -61,6 +66,11 @@ public class TeamView extends AbstractFXView {
         headquarterColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
         puSuppColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
 
+        List<TeamCarTable> list = new ArrayList<>();
+        for(var t : this.getTeamController().getAllTeam()) {
+            list.add(new TeamCarTable(t, this.getTeamController().getQueryManager().getCarByTeam(t)));
+        }
+        table.setItems(FXCollections.observableList(list));
     }
 
     @FXML
@@ -81,5 +91,9 @@ public class TeamView extends AbstractFXView {
     @FXML
     void onAddClick() {
 
+    }
+
+    private TeamController getTeamController() {
+        return (TeamController) this.getController();
     }
 }
