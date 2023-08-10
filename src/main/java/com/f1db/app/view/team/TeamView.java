@@ -49,6 +49,12 @@ public class TeamView extends AbstractFXView {
     @FXML
     private TableView<TeamCarTable> table;
 
+    @FXML
+    private TextField inputPU;
+
+    @FXML
+    private TextField inputCarName;
+
     @Override
     public void init() {
         initTeamTable();
@@ -68,7 +74,11 @@ public class TeamView extends AbstractFXView {
 
         List<TeamCarTable> list = new ArrayList<>();
         for(var t : this.getTeamController().getAllTeam()) {
-            list.add(new TeamCarTable(t, this.getTeamController().getQueryManager().getCarByTeam(t)));
+            for (var c : this.getTeamController().getQueryManager().getAllCar()){
+                if(t.getTeamId() == c.getTeam()){
+                    list.add(new TeamCarTable(t, c));
+                }
+            }
         }
         table.setItems(FXCollections.observableList(list));
     }
@@ -90,7 +100,9 @@ public class TeamView extends AbstractFXView {
 
     @FXML
     void onAddClick() {
-
+        this.getTeamController().addTeam(inputName.getText(), inputHeadquarter.getText(), inputNationality.getText());
+        this.getTeamController().addCar(inputCarName.getText(), inputPU.getText(), inputName.getText());
+        initTeamTable();
     }
 
     private TeamController getTeamController() {

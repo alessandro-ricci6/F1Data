@@ -14,7 +14,7 @@ public class EngDriverTable {
         this.name = engineer.getName();
         this.surname = engineer.getSurname();
         this.nationality = engineer.getNationality();
-        this.driver = driver.getSurname() + " " + driver.getName();
+        this.driver = driver.getSurname() + ", " + driver.getName();
     }
 
     public String getName() {

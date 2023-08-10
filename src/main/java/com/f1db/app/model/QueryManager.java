@@ -186,9 +186,16 @@ public class QueryManager {
     }
 
     public Car getCarByTeam(Team team) {
-        return (Car) entityManager.createNativeQuery("SELECT * FROM car WHERE team_teamId = :team")
+        List<Car> carList = entityManager.createNativeQuery("SELECT * FROM car WHERE team_teamId = :team")
                 .setParameter("team", team.getTeamId())
-                .getSingleResult();
+                .getResultList();
+        System.out.println(carList.size());
+        return carList.get(0);
+    }
+
+    public List<Car> getAllCar() {
+        return entityManager.createNativeQuery("SELECT * FROM car", Car.class)
+                .getResultList();
     }
 
 }

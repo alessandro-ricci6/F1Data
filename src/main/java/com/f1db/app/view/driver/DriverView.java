@@ -1,6 +1,7 @@
 package com.f1db.app.view.driver;
 
 import com.f1db.app.controller.driver.DriverController;
+import com.f1db.app.model.mixedTable.ContractTable;
 import com.f1db.app.view.AbstractFXView;
 import com.f1db.app.view.pages.Pages;
 import com.f1db.app.view.pages.SceneManager;
@@ -57,11 +58,33 @@ public class DriverView extends AbstractFXView {
 
     @FXML
     private TableView<Driver> table;
+    @FXML
+    private TableView<ContractTable> contractTable;
+
+    @FXML
+    private ChoiceBox<String> driverChoice;
+
+    @FXML
+    private TableColumn<ContractTable, String> contractDriverColumn;
+
+    @FXML
+    private TableColumn<ContractTable, Integer> expColumn;
+
+    @FXML
+    private ChoiceBox<String> teamChoice;
+
+    @FXML
+    private TextField inputYear;
+
+    @FXML
+    private TableColumn<ContractTable, String> teamColumn;
 
     @Override
     public void init() {
         initDriverTable();
         initEngineerMenu();
+        initContractTable();
+        initChoicesBox();
     }
 
     private void initDriverTable() {
@@ -86,6 +109,45 @@ public class DriverView extends AbstractFXView {
         engineer.setItems(FXCollections.observableList(surnameList));
     }
 
+    private void initContractTable() {
+        contractDriverColumn.setCellValueFactory(new PropertyValueFactory<>("driver"));
+        teamColumn.setCellValueFactory(new PropertyValueFactory<>("team"));
+        expColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
+        contractDriverColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(3));
+        teamColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(3));
+        expColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(3));
+        List<ContractTable> contractList = new ArrayList<>();
+        this.getDriverController().getAllContract().forEach(c ->
+                this.getDriverController().getAllDriver().forEach(d ->
+                        this.getDriverController().getQueryManager().getAllTeam().stream()
+                                .filter(t -> c.getDriver() == d.getDriverId() && c.getTeam() == t.getTeamId())
+                                .map(t -> new ContractTable(d, t, c))
+                                .forEach(contractList::add)
+                )
+        );
+        contractTable.setItems(FXCollections.observableList(contractList));
+    }
+
+    private void initChoicesBox() {
+        List<String> nameList = new ArrayList<>();
+        this.getDriverController().getQueryManager().getAllTeam()
+                .forEach(t -> nameList.add(t.getName()));
+        teamChoice.setItems(FXCollections.observableList(nameList));
+
+        List<String> surnameList = new ArrayList<>();
+        this.getDriverController().getQueryManager().getAllDriver()
+                .forEach(d -> surnameList.add(d.getSurname()));
+        System.out.println(surnameList.size());
+        driverChoice.setItems(FXCollections.observableList(surnameList));
+    }
+
+    @FXML
+    void onAddContractClick() {
+        this.getDriverController()
+                .addContract(driverChoice.getValue(), teamChoice.getValue(), Integer.parseInt(inputYear.getText()));
+        initContractTable();
+    }
+
     @FXML
     void onAddButton() {
         int engId = 0;
@@ -96,12 +158,13 @@ public class DriverView extends AbstractFXView {
         }
         this.getDriverController().addDriver(inputName.getText(), inputSurname.getText(), inputNationality.getText(),
                 Integer.parseInt(inputNumber.getText()), engId);
+        initDriverTable();
     }
 
     @FXML
     void onAddEngineerClick() {
         //Open a new Stage with the page where you can add the engineer
-        SceneManager.getInstance().switchPage(new Stage(), Pages.ENGINEER);
+        SceneManager.getInstance().switchPage(this.getStage(), Pages.ENGINEER);
     }
 
     @FXML
@@ -118,6 +181,7 @@ public class DriverView extends AbstractFXView {
     private void onTeamClick() {
         SceneManager.getInstance().switchPage(this.getStage(), Pages.TEAM);
     }
+
     private DriverController getDriverController() {
         return (DriverController) this.getController();
     }

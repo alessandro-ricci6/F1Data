@@ -37,7 +37,7 @@ public class Car {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "team")
+    @Column(name = "team_teamId")
     private int team;
     public int getTeam() {
         return team;

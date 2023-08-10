@@ -46,6 +46,10 @@
                               <Text layoutX="14.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Driver" />
                               <Text layoutX="14.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Second Driver" />
                               <Button layoutX="521.0" layoutY="250.0" mnemonicParsing="false" onAction="#onAddClick" prefHeight="25.0" prefWidth="64.0" text="Add" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+                              <TextField fx:id="inputCarName" layoutX="441.0" layoutY="30.0" promptText="Car name" />
+                              <TextField fx:id="inputPU" layoutX="441.0" layoutY="85.0" promptText="Power Unit" />
+                              <Text layoutX="328.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Car name" />
+                              <Text layoutX="328.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Power Unit Supplier" />
                            </children>
                         </AnchorPane>
                     </content>
