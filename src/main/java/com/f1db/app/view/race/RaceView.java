@@ -1,13 +1,11 @@
 package com.f1db.app.view.race;
 
 import com.f1db.app.controller.race.RaceController;
+import com.f1db.app.model.mixedTable.StandingTable;
 import com.f1db.app.view.AbstractFXView;
 import com.f1db.app.view.pages.Pages;
 import com.f1db.app.view.pages.SceneManager;
-import com.f1db.entity.Championship;
-import com.f1db.entity.Race;
-import com.f1db.entity.Standing;
-import com.f1db.entity.Track;
+import com.f1db.entity.*;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -27,7 +25,7 @@ public class RaceView extends AbstractFXView {
     private ChoiceBox<Integer> choiceChamp;
 
     @FXML
-    private TableColumn<Standing, Integer> driverColumn;
+    private TableColumn<StandingTable, String> driverColumn;
 
     @FXML
     private ChoiceBox<Integer> inputChampionship;
@@ -51,10 +49,10 @@ public class RaceView extends AbstractFXView {
     private TableColumn<?, ?> locationColumn;
 
     @FXML
-    private TableColumn<Standing, Double> pointsColumn;
+    private TableColumn<StandingTable, Double> pointsColumn;
 
     @FXML
-    private TableColumn<Standing,Integer> positionColumn;
+    private TableColumn<StandingTable,Integer> positionColumn;
 
     @FXML
     private ChoiceBox<String> choiceRace;
@@ -66,7 +64,7 @@ public class RaceView extends AbstractFXView {
     private TableColumn<?, ?> roundColumn;
 
     @FXML
-    private TableView<Standing> standingTable;
+    private TableView<StandingTable> standingTable;
 
     @FXML
     private TableColumn<?, ?> trackColumn;
@@ -96,7 +94,11 @@ public class RaceView extends AbstractFXView {
         pointsColumn.prefWidthProperty().bind(standingTable.widthProperty().divide(3));
         driverColumn.prefWidthProperty().bind(standingTable.widthProperty().divide(3));
         List<Standing> standList = this.getRaceController().getQueryManager().getStandingByRace(race.getRaceId());
-        standingTable.setItems(FXCollections.observableList(standList));
+        List<StandingTable> tableList = new ArrayList<>();
+        standList.forEach(s -> tableList.add
+                (new StandingTable(s, this.getRaceController().getQueryManager().getDriverById(s.getDriver()))));
+        standingTable.setItems(FXCollections.observableList(tableList));
+        standingTable.getSortOrder().add(positionColumn);
     }
 
     private void initChampMenu() {
@@ -153,10 +155,6 @@ public class RaceView extends AbstractFXView {
         SceneManager.getInstance().switchPage(this.getStage(), Pages.ENGINEER);
     }
 
-    @FXML
-    void onFindClick() {
-
-    }
 
     @FXML
     void onNextClick() {

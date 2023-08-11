@@ -204,4 +204,9 @@ public class QueryManager {
                 .getResultList();
     }
 
+    public Driver getDriverById(int driverId){
+        return (Driver) entityManager.createNativeQuery("SELECT * FROM driver WHERE driverId = :id", Driver.class)
+                .setParameter("id", driverId).getSingleResult();
+    }
+
 }

@@ -79,9 +79,8 @@
                                     <TableColumn fx:id="pointsColumn" prefWidth="155.0" text="Points" />
                                 </columns>
                               </TableView>
-                              <Button layoutX="60.0" layoutY="199.0" mnemonicParsing="false" onAction="#onFindClick" prefHeight="25.0" prefWidth="50.0" text="Find" />
-                              <ChoiceBox fx:id="choiceChamp" layoutX="10.0" layoutY="67.0" prefWidth="150.0" />
-                              <ChoiceBox fx:id="choiceRace" layoutX="10.0" layoutY="138.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="choiceChamp" layoutX="10.0" layoutY="95.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="choiceRace" layoutX="10.0" layoutY="210.0" prefWidth="150.0" />
                            </children>
                         </AnchorPane>
                     </content>
