@@ -2,6 +2,7 @@ package com.f1db.app.view.standing;
 
 import com.f1db.app.controller.standing.StandingController;
 import com.f1db.app.view.AbstractFXView;
+import com.f1db.entity.Championship;
 import com.f1db.entity.Driver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -78,6 +79,13 @@ public class StandingView extends AbstractFXView {
 
     @FXML
     void onAddClick() {
+        for (int i = 1; i <= 20; i++){
+            for(var d : this.getStandingController().getQueryManager().getAllDriver()){
+                if(getChoiceBox(i).getValue().equals(d.getSurname() + " " +d.getName())){
+                    this.getStandingController().addStanding(d, i);
+                }
+            }
+        }
         this.getStage().close();
     }
 
@@ -98,50 +106,29 @@ public class StandingView extends AbstractFXView {
     }
 
     private ChoiceBox<String> getChoiceBox(int position) {
-        switch (position) {
-            case 1:
-                return position1;
-            case 2:
-                return position2;
-            case 3:
-                return position3;
-            case 4:
-                return position4;
-            case 5:
-                return position5;
-            case 6:
-                return position6;
-            case 7:
-                return position7;
-            case 8:
-                return position8;
-            case 9:
-                return position9;
-            case 10:
-                return position10;
-            case 11:
-                return position11;
-            case 12:
-                return position12;
-            case 13:
-                return position13;
-            case 14:
-                return position14;
-            case 15:
-                return position15;
-            case 16:
-                return position16;
-            case 17:
-                return position17;
-            case 18:
-                return position18;
-            case 19:
-                return position19;
-            case 20:
-                return position20;
-            default:
-                return null;
-        }
+        return switch (position) {
+            case 1 -> position1;
+            case 2 -> position2;
+            case 3 -> position3;
+            case 4 -> position4;
+            case 5 -> position5;
+            case 6 -> position6;
+            case 7 -> position7;
+            case 8 -> position8;
+            case 9 -> position9;
+            case 10 -> position10;
+            case 11 -> position11;
+            case 12 -> position12;
+            case 13 -> position13;
+            case 14 -> position14;
+            case 15 -> position15;
+            case 16 -> position16;
+            case 17 -> position17;
+            case 18 -> position18;
+            case 19 -> position19;
+            case 20 -> position20;
+            default -> null;
+        };
     }
 
     private StandingController getStandingController(){

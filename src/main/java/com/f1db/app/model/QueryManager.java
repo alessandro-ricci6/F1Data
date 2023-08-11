@@ -112,9 +112,10 @@ public class QueryManager {
         transaction.commit();
     }
 
-    public List<Race> getRaceByYear(Championship championship) {
-        return entityManager.createNativeQuery("SELECT * FROM race WHERE championship_championshipId = :champ")
-                .setParameter("champ", championship.getChampionshipId())
+    public List<Race> getRaceByYear(int year) {
+        return entityManager.createNativeQuery("SELECT * FROM race WHERE championship_championshipId = " +
+                        "(SELECT championshipId FROM championship WHERE year = :year)", Race.class)
+                .setParameter("year", year)
                 .getResultList();
     }
 
@@ -195,6 +196,11 @@ public class QueryManager {
 
     public List<Car> getAllCar() {
         return entityManager.createNativeQuery("SELECT * FROM car", Car.class)
+                .getResultList();
+    }
+
+    public List<Race> getLastRace() {
+        return entityManager.createNativeQuery("SELECT * FROM race WHERE raceId = LAST_INSERT_ID()")
                 .getResultList();
     }
 

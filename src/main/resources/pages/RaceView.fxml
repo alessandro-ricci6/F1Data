@@ -4,7 +4,6 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -73,18 +72,6 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <MenuButton fx:id="championshipMenu" layoutX="21.0" layoutY="32.0" mnemonicParsing="false" text="MenuButton" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="60.0">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
-                                </items>
-                              </MenuButton>
-                              <MenuButton fx:id="raceMenu" layoutX="21.0" layoutY="102.0" mnemonicParsing="false" text="MenuButton" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="120.0">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
-                                </items>
-                              </MenuButton>
                               <TableView fx:id="standingTable" layoutX="201.0" layoutY="-1.0" prefHeight="347.0" prefWidth="439.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                 <columns>
                                   <TableColumn fx:id="positionColumn" prefWidth="155.0" text="Position" />
@@ -93,6 +80,8 @@
                                 </columns>
                               </TableView>
                               <Button layoutX="60.0" layoutY="199.0" mnemonicParsing="false" onAction="#onFindClick" prefHeight="25.0" prefWidth="50.0" text="Find" />
+                              <ChoiceBox fx:id="choiceChamp" layoutX="10.0" layoutY="67.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="choiceRace" layoutX="10.0" layoutY="138.0" prefWidth="150.0" />
                            </children>
                         </AnchorPane>
                     </content>

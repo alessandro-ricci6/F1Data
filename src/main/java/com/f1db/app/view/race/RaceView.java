@@ -9,7 +9,6 @@ import com.f1db.entity.Race;
 import com.f1db.entity.Track;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -23,7 +22,7 @@ public class RaceView extends AbstractFXView {
     private TableColumn<?, ?> championshipColumn;
 
     @FXML
-    private MenuButton championshipMenu;
+    private ChoiceBox<Integer> choiceChamp;
 
     @FXML
     private TableColumn<?, ?> driverColumn;
@@ -56,7 +55,7 @@ public class RaceView extends AbstractFXView {
     private TableColumn<?, ?> positionColumn;
 
     @FXML
-    private MenuButton raceMenu;
+    private ChoiceBox<String> choiceRace;
 
     @FXML
     private TableView<?> raceTable;
@@ -73,9 +72,9 @@ public class RaceView extends AbstractFXView {
     @Override
     public void init() {
         initRaceTable();
-        initStandingTable();
         initChampMenu();
-        initInputTrak();
+        initInputTrack();
+        initChampChoice();
     }
 
     private void initRaceTable() {
@@ -100,12 +99,29 @@ public class RaceView extends AbstractFXView {
         inputChampionship.setItems(FXCollections.observableList(yearList));
     }
 
-    private void initInputTrak (){
+    private void initInputTrack(){
         List<String> nameList = new ArrayList<>();
         List<Track> trackList = this.getRaceController().getQueryManager().getAlltrack();
         trackList.forEach(t -> nameList.add(t.getName()));
         inputTrack.setItems(FXCollections.observableList(nameList));
     }
+
+    private void initChampChoice() {
+        List<Championship> champList = this.getRaceController().getQueryManager().getAllChampionship();
+        List<Integer> yearList = new ArrayList<>();
+        champList.forEach(c -> yearList.add(c.getYear()));
+        choiceChamp.setItems(FXCollections.observableList(yearList));
+        choiceChamp.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                initRaceChoice(newValue));
+    }
+
+    private void initRaceChoice(int year) {
+        List<Race> raceList = this.getRaceController().getRaceByYear(year);
+        List<String> nameList = new ArrayList<>();
+        raceList.forEach(r -> nameList.add(this.getRaceController().getTrackByRace(r)));
+        choiceRace.setItems(FXCollections.observableList(nameList));
+    }
+
 
     @FXML
     void onAddTrackClick() {
