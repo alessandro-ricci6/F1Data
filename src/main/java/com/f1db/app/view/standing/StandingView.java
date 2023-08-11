@@ -79,10 +79,14 @@ public class StandingView extends AbstractFXView {
 
     @FXML
     void onAddClick() {
+        boolean fl;
         for (int i = 1; i <= 20; i++){
             for(var d : this.getStandingController().getQueryManager().getAllDriver()){
                 if(getChoiceBox(i).getValue().equals(d.getSurname() + " " +d.getName())){
-                    this.getStandingController().addStanding(d, i);
+                    if(fastLap.getValue().equals(d.getSurname() + " " + d.getName())){
+                        fl = true;
+                    } else {fl = false;}
+                    this.getStandingController().addStanding(d, i, fl);
                 }
             }
         }

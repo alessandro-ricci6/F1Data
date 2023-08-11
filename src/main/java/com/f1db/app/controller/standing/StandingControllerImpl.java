@@ -6,10 +6,14 @@ import com.f1db.entity.Standing;
 
 public class StandingControllerImpl extends ControllerImpl implements StandingController {
     @Override
-    public void addStanding(Driver driver, int position) {
+    public void addStanding(Driver driver, int position, boolean fl) {
         Standing standing = new Standing();
         standing.setDriver(driver.getDriverId());
-        standing.setPoints(getPoint(position) + flPoint(position));
+        if(fl) {
+            standing.setPoints(getPoint(position) + flPoint(position));
+        } else {
+            standing.setPoints(getPoint(position));
+        }
         standing.setPosition(position);
         standing.setRace(this.getQueryManager().getAllRaces()
                 .get(this.getQueryManager().getAllRaces().size() - 1).getRaceId());

@@ -6,10 +6,12 @@ import com.f1db.app.view.pages.Pages;
 import com.f1db.app.view.pages.SceneManager;
 import com.f1db.entity.Championship;
 import com.f1db.entity.Race;
+import com.f1db.entity.Standing;
 import com.f1db.entity.Track;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -25,7 +27,7 @@ public class RaceView extends AbstractFXView {
     private ChoiceBox<Integer> choiceChamp;
 
     @FXML
-    private TableColumn<?, ?> driverColumn;
+    private TableColumn<Standing, Integer> driverColumn;
 
     @FXML
     private ChoiceBox<Integer> inputChampionship;
@@ -49,10 +51,10 @@ public class RaceView extends AbstractFXView {
     private TableColumn<?, ?> locationColumn;
 
     @FXML
-    private TableColumn<?, ?> pointsColumn;
+    private TableColumn<Standing, Double> pointsColumn;
 
     @FXML
-    private TableColumn<?, ?> positionColumn;
+    private TableColumn<Standing,Integer> positionColumn;
 
     @FXML
     private ChoiceBox<String> choiceRace;
@@ -64,7 +66,7 @@ public class RaceView extends AbstractFXView {
     private TableColumn<?, ?> roundColumn;
 
     @FXML
-    private TableView<?> standingTable;
+    private TableView<Standing> standingTable;
 
     @FXML
     private TableColumn<?, ?> trackColumn;
@@ -86,10 +88,15 @@ public class RaceView extends AbstractFXView {
         championshipColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
     }
 
-    private void initStandingTable() {
+    private void initStandingTable(Race race) {
+        positionColumn.setCellValueFactory(new PropertyValueFactory<>("position"));
+        pointsColumn.setCellValueFactory(new PropertyValueFactory<>("points"));
+        driverColumn.setCellValueFactory(new PropertyValueFactory<>("driver"));
         positionColumn.prefWidthProperty().bind(standingTable.widthProperty().divide(3));
         pointsColumn.prefWidthProperty().bind(standingTable.widthProperty().divide(3));
         driverColumn.prefWidthProperty().bind(standingTable.widthProperty().divide(3));
+        List<Standing> standList = this.getRaceController().getQueryManager().getStandingByRace(race.getRaceId());
+        standingTable.setItems(FXCollections.observableList(standList));
     }
 
     private void initChampMenu() {
@@ -118,8 +125,16 @@ public class RaceView extends AbstractFXView {
     private void initRaceChoice(int year) {
         List<Race> raceList = this.getRaceController().getRaceByYear(year);
         List<String> nameList = new ArrayList<>();
-        raceList.forEach(r -> nameList.add(this.getRaceController().getTrackByRace(r)));
+        raceList.forEach(r -> nameList.add(this.getRaceController().getTrackByRace(r).getName()));
         choiceRace.setItems(FXCollections.observableList(nameList));
+        choiceRace.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->{
+            Race selRace = new Race();
+            for(var r : this.getRaceController().getQueryManager().getAllRaces()){
+                if(this.getRaceController().getTrackByRace(r).getName().equals(newValue)){
+                    selRace = r;
+                }
+            }
+            initStandingTable(selRace);});
     }
 
 

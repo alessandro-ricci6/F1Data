@@ -16,7 +16,7 @@ public class Standing {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "race")
+    @Column(name = "race_raceId")
     private int race;
     public int getRace() {
         return race;
@@ -27,7 +27,7 @@ public class Standing {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "driver")
+    @Column(name = "driver_driverId")
     private int driver;
     public int getDriver() {
         return driver;

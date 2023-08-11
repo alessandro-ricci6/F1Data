@@ -25,12 +25,12 @@ public class RaceControllerImpl extends ControllerImpl implements RaceController
     }
 
     @Override
-    public String getTrackByRace(Race race) {
+    public Track getTrackByRace(Race race) {
         for (var t : this.getQueryManager().getAlltrack()) {
             if(race.getTrack() == t.getTrackId()){
-                return t.getName();
+                return t;
             }
         }
-        return "null";
+        return null;
     }
 }
