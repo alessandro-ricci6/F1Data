@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -38,18 +37,14 @@
                               <TextField fx:id="inputName" layoutX="30.0" layoutY="44.0" promptText="Name" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="30.0" />
                               <TextField fx:id="inputHeadquarter" layoutX="75.0" layoutY="136.0" promptText="Headquarter" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="85.0" />
                               <TextField fx:id="inputNationality" layoutX="84.0" layoutY="205.0" promptText="Nationality" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="140.0" />
-                              <ChoiceBox fx:id="driver1" layoutX="47.0" layoutY="264.0" prefWidth="150.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="195.0" />
-                              <ChoiceBox fx:id="driver2" layoutX="290.0" layoutY="105.0" prefWidth="150.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="250.0" />
                               <Text layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Team Name" />
                               <Text layoutX="14.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Team Headquarter" />
                               <Text layoutX="14.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Team Nationality" />
-                              <Text layoutX="14.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Driver" />
-                              <Text layoutX="14.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Second Driver" />
                               <Button layoutX="521.0" layoutY="250.0" mnemonicParsing="false" onAction="#onAddClick" prefHeight="25.0" prefWidth="64.0" text="Add" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-                              <TextField fx:id="inputCarName" layoutX="441.0" layoutY="30.0" promptText="Car name" />
-                              <TextField fx:id="inputPU" layoutX="441.0" layoutY="85.0" promptText="Power Unit" />
-                              <Text layoutX="328.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Car name" />
-                              <Text layoutX="328.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Power Unit Supplier" />
+                              <TextField fx:id="inputCarName" layoutX="140.0" layoutY="193.0" promptText="Car name" AnchorPane.topAnchor="195.0" />
+                              <TextField fx:id="inputPU" layoutX="140.0" layoutY="259.0" promptText="Power Unit" AnchorPane.topAnchor="250.0" />
+                              <Text layoutX="14.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Car name" AnchorPane.leftAnchor="14.0" />
+                              <Text layoutX="12.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Power Unit Supplier" AnchorPane.leftAnchor="14.0" />
                            </children>
                         </AnchorPane>
                     </content>

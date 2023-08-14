@@ -42,7 +42,11 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
         contract.setDriver(driverId);
         contract.setTeam(teamId);
         contract.setExpiration(year);
-        this.getQueryManager().addContract(contract);
+        if(checkIfContractExist(driverId, teamId)) {
+            this.getQueryManager().updateContract(contract);
+        } else {
+            this.getQueryManager().addContract(contract);
+        }
     }
 
     @Override
@@ -64,5 +68,15 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
             }
         }
         return 0;
+    }
+
+    private boolean checkIfContractExist(int driverId, int teamId){
+        List<Contract> contractList = this.getQueryManager().getAllContract();
+        for (var c : contractList) {
+            if(c.getTeam() == teamId && c.getDriver() == driverId){
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -91,13 +91,6 @@ public class DriverView extends AbstractFXView {
 
     @Override
     public void init() {
-        yAxis.setAutoRanging(false);
-        xAxis.setAutoRanging(false);
-        xAxis.setTickUnit(1.0);
-        xAxis.setUpperBound(25);
-        yAxis.setUpperBound(1);
-        yAxis.setLowerBound(20);
-        yAxis.setTickUnit(1.0);
         initDriverTable();
         initEngineerMenu();
         initContractTable();

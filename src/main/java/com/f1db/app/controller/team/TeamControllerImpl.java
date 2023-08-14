@@ -4,6 +4,7 @@ import com.f1db.app.controller.ControllerImpl;
 import com.f1db.entity.Car;
 import com.f1db.entity.Team;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TeamControllerImpl extends ControllerImpl implements TeamController {
@@ -37,5 +38,12 @@ public class TeamControllerImpl extends ControllerImpl implements TeamController
     @Override
     public List<Car> getAllCar() {
         return this.getQueryManager().getAllCar();
+    }
+
+    @Override
+    public List<String> getDriver() {
+        List<String> outList = new ArrayList<>();
+        this.getQueryManager().getAllDriver().forEach(d -> outList.add(d.getSurname() + ", " + d.getName()));
+        return outList;
     }
 }

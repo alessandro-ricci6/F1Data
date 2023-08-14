@@ -26,12 +26,6 @@ public class TeamView extends AbstractFXView {
     private TextField inputNationality;
 
     @FXML
-    private ChoiceBox<?> driver1;
-
-    @FXML
-    private ChoiceBox<?> driver2;
-
-    @FXML
     private TableColumn<TeamCarTable, String> carNameColumn;
 
     @FXML

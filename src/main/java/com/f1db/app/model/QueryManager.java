@@ -209,4 +209,15 @@ public class QueryManager {
                 .setParameter("id", driverId).getSingleResult();
     }
 
+    public void updateContract (Contract contract) {
+        transaction.begin();
+        entityManager.createNativeQuery("UPDATE contract SET team_teamId = :teamId, expiration = :expiration " +
+                "WHERE driver_driverId = :driverId")
+                .setParameter("teamId", contract.getTeam())
+                .setParameter("expiration", contract.getExpiration())
+                .setParameter("driverId", contract.getDriver())
+                .executeUpdate();
+        transaction.commit();
+    }
+
 }
