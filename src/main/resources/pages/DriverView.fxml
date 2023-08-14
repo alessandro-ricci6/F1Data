@@ -7,7 +7,6 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -85,18 +84,8 @@
                                   <NumberAxis side="LEFT" />
                                 </yAxis>
                               </LineChart>
-                              <MenuButton fx:id="driver1" layoutX="41.0" layoutY="60.0" mnemonicParsing="false" text="MenuButton" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="505.0" AnchorPane.topAnchor="60.0">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
-                                </items>
-                              </MenuButton>
-                              <MenuButton fx:id="driver2" layoutX="31.0" layoutY="135.0" mnemonicParsing="false" text="MenuButton" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="505.0">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
-                                </items>
-                              </MenuButton>
+                              <ChoiceBox fx:id="driver1" layoutX="14.0" layoutY="94.0" prefHeight="25.0" prefWidth="140.0" />
+                              <ChoiceBox fx:id="driver2" layoutX="14.0" layoutY="173.0" prefHeight="25.0" prefWidth="141.0" />
                            </children>
                         </AnchorPane>
                   </content>

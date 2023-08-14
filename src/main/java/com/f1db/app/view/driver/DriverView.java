@@ -21,10 +21,10 @@ import java.util.List;
 public class DriverView extends AbstractFXView {
 
     @FXML
-    private MenuButton driver1;
+    private ChoiceBox<String> driver1;
 
     @FXML
-    private MenuButton driver2;
+    private ChoiceBox<String> driver2;
 
     @FXML
     private LineChart<?, ?> driverGraph;
