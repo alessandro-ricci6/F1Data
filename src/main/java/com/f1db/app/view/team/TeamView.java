@@ -62,16 +62,7 @@ public class TeamView extends AbstractFXView {
         nationalityColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
         headquarterColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
         puSuppColumn.prefWidthProperty().bind(table.widthProperty().divide(5));
-
-        List<TeamCarTable> list = new ArrayList<>();
-        for(var t : this.getTeamController().getAllTeam()) {
-            for (var c : this.getTeamController().getQueryManager().getAllCar()){
-                if(t.getTeamId() == c.getTeam()){
-                    list.add(new TeamCarTable(t, c));
-                }
-            }
-        }
-        table.setItems(FXCollections.observableList(list));
+        table.setItems(FXCollections.observableList(this.getTeamController().getTeamTable()));
     }
 
     @FXML

@@ -1,6 +1,7 @@
 package com.f1db.app.controller.driver;
 
 import com.f1db.app.controller.ControllerImpl;
+import com.f1db.app.model.mixedTable.ContractTable;
 import com.f1db.entity.Contract;
 import com.f1db.entity.Driver;
 import javafx.util.Pair;
@@ -58,6 +59,20 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
                         .forEach(s -> outList.add(new Pair<>(getRound(s.getRace()), s.getPosition())));
             }
         }
+        return outList;
+    }
+
+    @Override
+    public List<ContractTable> getContractTableList() {
+        List<ContractTable> outList = new ArrayList<>();
+        this.getQueryManager().getAllContract().forEach(c ->
+                this.getQueryManager().getAllDriver().forEach(d ->
+                        this.getQueryManager().getAllTeam().stream()
+                                .filter(t -> c.getDriver() == d.getDriverId() && c.getTeam() == t.getTeamId())
+                                .map(t -> new ContractTable(d, t, c))
+                                .forEach(outList::add)
+                )
+        );
         return outList;
     }
 

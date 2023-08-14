@@ -1,6 +1,7 @@
 package com.f1db.app.controller.team;
 
 import com.f1db.app.controller.ControllerImpl;
+import com.f1db.app.model.mixedTable.TeamCarTable;
 import com.f1db.entity.Car;
 import com.f1db.entity.Team;
 
@@ -8,10 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeamControllerImpl extends ControllerImpl implements TeamController {
-    @Override
-    public List<Team> getAllTeam() {
-        return this.getQueryManager().getAllTeam();
-    }
 
     @Override
     public void addTeam(String name, String headquarter, String nationality) {
@@ -36,14 +33,22 @@ public class TeamControllerImpl extends ControllerImpl implements TeamController
     }
 
     @Override
-    public List<Car> getAllCar() {
-        return this.getQueryManager().getAllCar();
-    }
-
-    @Override
     public List<String> getDriver() {
         List<String> outList = new ArrayList<>();
         this.getQueryManager().getAllDriver().forEach(d -> outList.add(d.getSurname() + ", " + d.getName()));
+        return outList;
+    }
+
+    @Override
+    public List<TeamCarTable> getTeamTable() {
+        List<TeamCarTable> outList = new ArrayList<>();
+        for(var t : this.getQueryManager().getAllTeam()) {
+            for (var c : this.getQueryManager().getAllCar()){
+                if(t.getTeamId() == c.getTeam()){
+                    outList.add(new TeamCarTable(t, c));
+                }
+            }
+        }
         return outList;
     }
 }

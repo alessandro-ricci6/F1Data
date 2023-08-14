@@ -72,15 +72,7 @@ public class EngineerView extends AbstractFXView {
         columnDriver.prefWidthProperty().bind(table.widthProperty().divide(4));
         columnNationality.prefWidthProperty().bind(table.widthProperty().divide(4));
         columnSurname.prefWidthProperty().bind(table.widthProperty().divide(4));
-        List<EngDriverTable> engList = new ArrayList<>();
-        for(var e : this.getEngineerController().getAllEngineer()) {
-            for(var d : this.getEngineerController().getQueryManager().getAllDriver()) {
-                if(d.getEngineer() == e.getEngineerId()) {
-                    engList.add(new EngDriverTable(e, d));
-                }
-            }
-        }
-        table.setItems(FXCollections.observableList(engList));
+        table.setItems(FXCollections.observableList(this.getEngineerController().getEngDriverTableList()));
     }
 
     private EngineerController getEngineerController() {

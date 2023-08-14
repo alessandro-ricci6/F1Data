@@ -1,6 +1,7 @@
 package com.f1db.app.controller.driver;
 
 import com.f1db.app.controller.Controller;
+import com.f1db.app.model.mixedTable.ContractTable;
 import com.f1db.entity.Contract;
 import com.f1db.entity.Driver;
 import javafx.util.Pair;
@@ -13,4 +14,5 @@ public interface DriverController extends Controller {
     void addDriver(String name, String surname, String nationality, int number, int engineer);
     void addContract(String driver, String team, int year);
     List<Pair<Integer, Integer>> getDriverStanding(String driver);
+    List<ContractTable> getContractTableList();
 }

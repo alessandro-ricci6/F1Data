@@ -124,16 +124,7 @@ public class DriverView extends AbstractFXView {
         contractDriverColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(3));
         teamColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(3));
         expColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(3));
-        List<ContractTable> contractList = new ArrayList<>();
-        this.getDriverController().getAllContract().forEach(c ->
-                this.getDriverController().getAllDriver().forEach(d ->
-                        this.getDriverController().getQueryManager().getAllTeam().stream()
-                                .filter(t -> c.getDriver() == d.getDriverId() && c.getTeam() == t.getTeamId())
-                                .map(t -> new ContractTable(d, t, c))
-                                .forEach(contractList::add)
-                )
-        );
-        contractTable.setItems(FXCollections.observableList(contractList));
+        contractTable.setItems(FXCollections.observableList(this.getDriverController().getContractTableList()));
     }
 
     private void initChoicesBox() {
@@ -145,7 +136,6 @@ public class DriverView extends AbstractFXView {
         List<String> surnameList = new ArrayList<>();
         this.getDriverController().getAllDriver()
                 .forEach(d -> surnameList.add(d.getSurname()));
-        System.out.println(surnameList.size());
         driverChoice.setItems(FXCollections.observableList(surnameList));
 
         List<String> driverList = new ArrayList<>();
