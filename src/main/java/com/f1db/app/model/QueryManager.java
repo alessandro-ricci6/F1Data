@@ -136,7 +136,7 @@ public class QueryManager {
         transaction.commit();
     }
 
-    public List<Track> getAlltrack(){
+    public List<Track> getAllTrack(){
         return entityManager.createNativeQuery("SELECT * FROM track", Track.class)
                 .getResultList();
     }

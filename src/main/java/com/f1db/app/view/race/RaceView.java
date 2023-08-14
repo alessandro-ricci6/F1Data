@@ -1,6 +1,7 @@
 package com.f1db.app.view.race;
 
 import com.f1db.app.controller.race.RaceController;
+import com.f1db.app.model.mixedTable.RaceTable;
 import com.f1db.app.model.mixedTable.StandingTable;
 import com.f1db.app.view.AbstractFXView;
 import com.f1db.app.view.pages.Pages;
@@ -19,7 +20,7 @@ import java.util.Optional;
 public class RaceView extends AbstractFXView {
 
     @FXML
-    private TableColumn<?, ?> championshipColumn;
+    private TableColumn<RaceTable, Integer> championshipColumn;
 
     @FXML
     private ChoiceBox<Integer> choiceChamp;
@@ -40,13 +41,13 @@ public class RaceView extends AbstractFXView {
     private ChoiceBox<String> inputTrack;
 
     @FXML
-    private TableColumn<?, ?> lapsColumn;
+    private TableColumn<RaceTable, Integer> lapsColumn;
 
     @FXML
-    private TableColumn<?, ?> lengthColumn;
+    private TableColumn<RaceTable, Integer> lengthColumn;
 
     @FXML
-    private TableColumn<?, ?> locationColumn;
+    private TableColumn<RaceTable, String> locationColumn;
 
     @FXML
     private TableColumn<StandingTable, Double> pointsColumn;
@@ -58,16 +59,16 @@ public class RaceView extends AbstractFXView {
     private ChoiceBox<String> choiceRace;
 
     @FXML
-    private TableView<?> raceTable;
+    private TableView<RaceTable> raceTable;
 
     @FXML
-    private TableColumn<?, ?> roundColumn;
+    private TableColumn<RaceTable, Integer> roundColumn;
 
     @FXML
     private TableView<StandingTable> standingTable;
 
     @FXML
-    private TableColumn<?, ?> trackColumn;
+    private TableColumn<RaceTable, String> trackColumn;
 
     @Override
     public void init() {
@@ -78,12 +79,19 @@ public class RaceView extends AbstractFXView {
     }
 
     private void initRaceTable() {
+        trackColumn.setCellValueFactory(new PropertyValueFactory<>("trackName"));
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("trackLocation"));
+        lapsColumn.setCellValueFactory(new PropertyValueFactory<>("laps"));
+        lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
+        roundColumn.setCellValueFactory(new PropertyValueFactory<>("round"));
+        championshipColumn.setCellValueFactory(new PropertyValueFactory<>("championship"));
         trackColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
         locationColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
         lapsColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
         lengthColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
         roundColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
         championshipColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
+        raceTable.setItems(FXCollections.observableList(this.getRaceController().getRaceTableList()));
     }
 
     private void initStandingTable(Race race) {
@@ -110,7 +118,7 @@ public class RaceView extends AbstractFXView {
 
     private void initInputTrack(){
         List<String> nameList = new ArrayList<>();
-        List<Track> trackList = this.getRaceController().getQueryManager().getAlltrack();
+        List<Track> trackList = this.getRaceController().getQueryManager().getAllTrack();
         trackList.forEach(t -> nameList.add(t.getName()));
         inputTrack.setItems(FXCollections.observableList(nameList));
     }

@@ -48,7 +48,7 @@ public class Track {
     @Basic
     @Column(name = "length")
     private Integer length;
-    public double getLength() {
+    public int getLength() {
         return length;
     }
     public void setLength(Integer length) {

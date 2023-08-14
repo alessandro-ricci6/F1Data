@@ -59,7 +59,7 @@
                                   <TableColumn fx:id="trackColumn" prefWidth="105.0" text="Track Name" />
                                   <TableColumn fx:id="locationColumn" prefWidth="105.0" text="Track Location" />
                                     <TableColumn fx:id="lapsColumn" prefWidth="105.0" text="Laps" />
-                                    <TableColumn fx:id="lengthColumn" prefWidth="105.0" text="Lap Length" />
+                                    <TableColumn fx:id="lengthColumn" prefWidth="105.0" text="Lap Length(m)" />
                                     <TableColumn fx:id="roundColumn" prefWidth="105.0" text="Round" />
                                     <TableColumn fx:id="championshipColumn" prefWidth="105.0" text="Championship" />
                                 </columns>
