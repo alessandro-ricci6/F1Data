@@ -1,7 +1,6 @@
 package com.f1db.app.controller.race;
 
 import com.f1db.app.controller.ControllerImpl;
-import com.f1db.entity.Championship;
 import com.f1db.entity.Race;
 import com.f1db.entity.Track;
 
@@ -14,7 +13,20 @@ public class RaceControllerImpl extends ControllerImpl implements RaceController
     }
 
     @Override
-    public void addRace(Race race) {
+    public void addRace(int championship, String laps, String round, String track) {
+        Race race = new Race();
+        for (var c :this.getQueryManager().getAllChampionship()){
+            if(c.getYear() == championship){
+                race.setChampionship(c.getChampionshipId());
+            }
+        }
+        race.setLaps(Integer.parseInt(laps));
+        race.setRound(Integer.parseInt(round));
+        for(var t : this.getQueryManager().getAlltrack()){
+            if(t.getName().equals(track)){
+                race.setTrack(t.getTrackId());
+            }
+        }
         this.getQueryManager().addRace(race);
     }
 

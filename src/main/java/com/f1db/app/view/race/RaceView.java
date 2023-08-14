@@ -158,20 +158,7 @@ public class RaceView extends AbstractFXView {
 
     @FXML
     void onNextClick() {
-        Race race = new Race();
-        for (var c :this.getRaceController().getQueryManager().getAllChampionship()){
-            if(c.getYear() == inputChampionship.getValue()){
-                race.setChampionship(c.getChampionshipId());
-            }
-        }
-        race.setLaps(Integer.parseInt(inputLaps.getText()));
-        race.setRound(Integer.parseInt(inputRound.getText()));
-        for(var t : this.getRaceController().getQueryManager().getAlltrack()){
-            if(t.getName().equals(inputTrack.getValue())){
-                race.setTrack(t.getTrackId());
-            }
-        }
-        this.getRaceController().addRace(race);
+        this.getRaceController().addRace(inputChampionship.getValue(), inputLaps.getText(), inputRound.getText(), inputTrack.getValue());
         SceneManager.getInstance().switchPage(new Stage(), Pages.STANDING);
     }
 

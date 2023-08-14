@@ -4,13 +4,10 @@ import com.f1db.app.controller.team.TeamController;
 import com.f1db.app.model.mixedTable.TeamCarTable;
 import com.f1db.app.view.AbstractFXView;
 import com.f1db.app.view.pages.*;
-import com.f1db.entity.Car;
-import com.f1db.entity.Team;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 

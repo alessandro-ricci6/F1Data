@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface RaceController extends Controller {
     void addChampionship(int year);
-    void addRace(Race race);
+    void addRace(int championship, String laps, String round, String track);
     List<Race> getRaceByYear(int year);
     Track getTrackByRace(Race race);
 }

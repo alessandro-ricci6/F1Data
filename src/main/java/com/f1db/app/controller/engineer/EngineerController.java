@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface EngineerController extends Controller {
 
-    boolean addEngineer(Engineer engineer);
+    void     addEngineer(String name, String surname, String nationality);
     List<Engineer> getAllEngineer();
 }

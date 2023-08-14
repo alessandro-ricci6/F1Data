@@ -5,13 +5,10 @@ import com.f1db.app.model.mixedTable.EngDriverTable;
 import com.f1db.app.view.AbstractFXView;
 import com.f1db.app.view.pages.Pages;
 import com.f1db.app.view.pages.SceneManager;
-import com.f1db.entity.Driver;
-import com.f1db.entity.Engineer;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,11 +40,7 @@ public class EngineerView extends AbstractFXView {
 
     @FXML
     void onAddClick() {
-        Engineer engineer = new Engineer();
-        engineer.setName(inputName.getText());
-        engineer.setNationality(inputNationality.getText());
-        engineer.setSurname(inputSurname.getText());
-        this.getEngineerController().addEngineer(engineer);
+        this.getEngineerController().addEngineer(inputName.getText(), inputSurname.getText(), inputNationality.getText());
     }
 
     @FXML

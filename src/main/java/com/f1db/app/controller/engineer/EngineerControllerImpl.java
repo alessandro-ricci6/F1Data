@@ -7,12 +7,12 @@ import java.util.List;
 
 public class EngineerControllerImpl extends ControllerImpl implements EngineerController {
     @Override
-    public boolean addEngineer(Engineer engineer) {
-        if(engineer.getName() == null || engineer.getSurname() == null) {
-            return false;
-        }
+    public void addEngineer(String name, String surname, String nationality) {
+        Engineer engineer = new Engineer();
+        engineer.setName(name);
+        engineer.setNationality(nationality);
+        engineer.setSurname(surname);
         this.getQueryManager().addEngineer(engineer);
-        return true;
     }
 
     @Override

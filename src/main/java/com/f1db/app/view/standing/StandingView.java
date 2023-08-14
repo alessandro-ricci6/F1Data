@@ -2,13 +2,10 @@ package com.f1db.app.view.standing;
 
 import com.f1db.app.controller.standing.StandingController;
 import com.f1db.app.view.AbstractFXView;
-import com.f1db.entity.Championship;
 import com.f1db.entity.Driver;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-
 import java.util.ArrayList;
 import java.util.List;
 

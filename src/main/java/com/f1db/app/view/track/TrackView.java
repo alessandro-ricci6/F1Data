@@ -2,7 +2,6 @@ package com.f1db.app.view.track;
 
 import com.f1db.app.controller.track.TrackController;
 import com.f1db.app.view.AbstractFXView;
-import com.f1db.entity.Track;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
@@ -26,12 +25,7 @@ public class TrackView extends AbstractFXView {
 
     @FXML
     void onAddClick() {
-        Track track = new Track();
-        track.setCity(inputCity.getText());
-        track.setCountry(inputCountry.getText());
-        track.setLength(Integer.parseInt(inputLength.getText()));
-        track.setName(inputName.getText());
-        this.getTrackController().addTrack(track);
+        this.getTrackController().addTrack(inputName.getText(), inputCountry.getText(), inputCity.getText(), inputLength.getText());
         this.getStage().close();
     }
 
