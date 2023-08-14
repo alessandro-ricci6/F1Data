@@ -46,12 +46,12 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
     }
 
     @Override
-    public List<Pair<Integer, Double>> getDriverStanding(String driver) {
-        List<Pair<Integer, Double>> outList = new ArrayList<>();
+    public List<Pair<Integer, Integer>> getDriverStanding(String driver) {
+        List<Pair<Integer, Integer>> outList = new ArrayList<>();
         for (var d : this.getQueryManager().getAllDriver()) {
             if((d.getSurname() + ", " + d.getName()).equals(driver)) {
                 this.getQueryManager().getStandingByDriver(d.getDriverId())
-                        .forEach(s -> outList.add(new Pair<>(getRound(s.getRace()), s.getPoints())));
+                        .forEach(s -> outList.add(new Pair<>(getRound(s.getRace()), s.getPosition())));
             }
         }
         return outList;

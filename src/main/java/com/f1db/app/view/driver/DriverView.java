@@ -29,7 +29,9 @@ public class DriverView extends AbstractFXView {
     @FXML
     private ChoiceBox<String> driver2;
 
+    @FXML
     NumberAxis xAxis = new NumberAxis();
+    @FXML
     NumberAxis yAxis = new NumberAxis();
     XYChart.Series<Number, Number> driver1Series;
     XYChart.Series<Number, Number> driver2Series;
@@ -89,6 +91,13 @@ public class DriverView extends AbstractFXView {
 
     @Override
     public void init() {
+        yAxis.setAutoRanging(false);
+        xAxis.setAutoRanging(false);
+        xAxis.setTickUnit(1.0);
+        xAxis.setUpperBound(25);
+        yAxis.setUpperBound(1);
+        yAxis.setLowerBound(20);
+        yAxis.setTickUnit(1.0);
         initDriverTable();
         initEngineerMenu();
         initContractTable();
@@ -154,7 +163,6 @@ public class DriverView extends AbstractFXView {
         driver1.setItems(FXCollections.observableList(driverList));
         driver1.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             driver2.setDisable(false);
-            driverList.remove(newValue);
             driver2.setItems(FXCollections.observableList(driverList));
             initDriver1Chart(newValue);
         });
@@ -165,7 +173,7 @@ public class DriverView extends AbstractFXView {
 
     void initDriver1Chart(String driver) {
         driverGraph.getData().remove(driver1Series);
-        List<Pair<Integer, Double>> list = this.getDriverController().getDriverStanding(driver);
+        List<Pair<Integer, Integer>> list = this.getDriverController().getDriverStanding(driver);
         XYChart.Series<Number, Number> dataSeries = new XYChart.Series<>();
         dataSeries.setName(driver);
         for (var p : list){
@@ -177,7 +185,7 @@ public class DriverView extends AbstractFXView {
 
     void initDriver2Chart(String driver) {
         driverGraph.getData().remove(driver2Series);
-        List<Pair<Integer, Double>> list = this.getDriverController().getDriverStanding(driver);
+        List<Pair<Integer, Integer>> list = this.getDriverController().getDriverStanding(driver);
         XYChart.Series<Number, Number> dataSeries = new XYChart.Series<>();
         dataSeries.setName(driver);
         for (var p : list){

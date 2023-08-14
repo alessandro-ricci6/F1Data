@@ -33,9 +33,6 @@ public class EngineerView extends AbstractFXView {
     private TableColumn<EngDriverTable, String> columnSurname;
 
     @FXML
-    private TextField findInput;
-
-    @FXML
     private TextField inputName;
 
     @FXML

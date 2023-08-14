@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.f1db.app.view.engineer.EngineerView">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.f1db.app.view.engineer.EngineerView">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -49,7 +49,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="110.0">
+                              <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                 <columns>
                                   <TableColumn fx:id="columnName" prefWidth="158.0" text="Name" />
                                   <TableColumn fx:id="columnSurname" prefWidth="157.0" text="Surname" />
@@ -57,8 +57,6 @@
                                     <TableColumn fx:id="columnDriver" prefWidth="157.0" text="Driver" />
                                 </columns>
                               </TableView>
-                              <Text layoutX="25.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" AnchorPane.leftAnchor="25.0" />
-                              <TextField fx:id="findInput" layoutX="72.0" layoutY="40.0" />
                            </children>
                         </AnchorPane>
                   </content>
