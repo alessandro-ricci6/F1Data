@@ -95,7 +95,7 @@ public class QueryManager {
     }
 
     public List<Standing> getStandingByDriver(int driverId) {
-        return entityManager.createNativeQuery("SELECT * FROM driver WHERE driver_driverId = :driverId", Standing.class)
+        return entityManager.createNativeQuery("SELECT * FROM standing WHERE driver_driverId = :driverId", Standing.class)
                 .setParameter("driverId", driverId)
                 .getResultList();
     }

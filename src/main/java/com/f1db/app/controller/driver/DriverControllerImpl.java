@@ -3,7 +3,9 @@ package com.f1db.app.controller.driver;
 import com.f1db.app.controller.ControllerImpl;
 import com.f1db.entity.Contract;
 import com.f1db.entity.Driver;
+import javafx.util.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DriverControllerImpl extends ControllerImpl implements DriverController {
@@ -41,5 +43,26 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
         contract.setTeam(teamId);
         contract.setExpiration(year);
         this.getQueryManager().addContract(contract);
+    }
+
+    @Override
+    public List<Pair<Integer, Double>> getDriverStanding(String driver) {
+        List<Pair<Integer, Double>> outList = new ArrayList<>();
+        for (var d : this.getQueryManager().getAllDriver()) {
+            if((d.getSurname() + ", " + d.getName()).equals(driver)) {
+                this.getQueryManager().getStandingByDriver(d.getDriverId())
+                        .forEach(s -> outList.add(new Pair<>(getRound(s.getRace()), s.getPoints())));
+            }
+        }
+        return outList;
+    }
+
+    private int getRound(int id) {
+        for (var r : this.getQueryManager().getAllRaces()) {
+            if(r.getRaceId() == id){
+                return r.getRound();
+            }
+        }
+        return 0;
     }
 }

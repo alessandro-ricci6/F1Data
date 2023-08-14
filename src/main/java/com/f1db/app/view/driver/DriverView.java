@@ -11,9 +11,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +29,13 @@ public class DriverView extends AbstractFXView {
     @FXML
     private ChoiceBox<String> driver2;
 
+    NumberAxis xAxis = new NumberAxis();
+    NumberAxis yAxis = new NumberAxis();
+    XYChart.Series<Number, Number> driver1Series;
+    XYChart.Series<Number, Number> driver2Series;
+
     @FXML
-    private LineChart<?, ?> driverGraph;
+    private LineChart<Number, Number> driverGraph = new LineChart<>(xAxis, yAxis);
 
     @FXML
     private ChoiceBox<String> engineer;
@@ -135,10 +143,48 @@ public class DriverView extends AbstractFXView {
         teamChoice.setItems(FXCollections.observableList(nameList));
 
         List<String> surnameList = new ArrayList<>();
-        this.getDriverController().getQueryManager().getAllDriver()
+        this.getDriverController().getAllDriver()
                 .forEach(d -> surnameList.add(d.getSurname()));
         System.out.println(surnameList.size());
         driverChoice.setItems(FXCollections.observableList(surnameList));
+
+        List<String> driverList = new ArrayList<>();
+        this.getDriverController().getAllDriver()
+                .forEach(d -> driverList.add(d.getSurname() + ", " + d.getName()));
+        driver1.setItems(FXCollections.observableList(driverList));
+        driver1.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            driver2.setDisable(false);
+            driverList.remove(newValue);
+            driver2.setItems(FXCollections.observableList(driverList));
+            initDriver1Chart(newValue);
+        });
+        driver2.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                initDriver2Chart(newValue));
+        driver2.setDisable(true);
+    }
+
+    void initDriver1Chart(String driver) {
+        driverGraph.getData().remove(driver1Series);
+        List<Pair<Integer, Double>> list = this.getDriverController().getDriverStanding(driver);
+        XYChart.Series<Number, Number> dataSeries = new XYChart.Series<>();
+        dataSeries.setName(driver);
+        for (var p : list){
+            dataSeries.getData().add(new XYChart.Data<>(p.getKey(), p.getValue()));
+        }
+        driverGraph.getData().add(dataSeries);
+        this.driver1Series = dataSeries;
+    }
+
+    void initDriver2Chart(String driver) {
+        driverGraph.getData().remove(driver2Series);
+        List<Pair<Integer, Double>> list = this.getDriverController().getDriverStanding(driver);
+        XYChart.Series<Number, Number> dataSeries = new XYChart.Series<>();
+        dataSeries.setName(driver);
+        for (var p : list){
+            dataSeries.getData().add(new XYChart.Data<>(p.getKey(), p.getValue()));
+        }
+        driverGraph.getData().add(dataSeries);
+        this.driver2Series = dataSeries;
     }
 
     @FXML

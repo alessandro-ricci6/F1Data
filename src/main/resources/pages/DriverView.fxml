@@ -78,7 +78,7 @@
                            <children>
                               <LineChart fx:id="driverGraph" layoutX="133.0" layoutY="58.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                 <xAxis>
-                                  <CategoryAxis side="BOTTOM" />
+                                  <NumberAxis side="BOTTOM" />
                                 </xAxis>
                                 <yAxis>
                                   <NumberAxis side="LEFT" />
