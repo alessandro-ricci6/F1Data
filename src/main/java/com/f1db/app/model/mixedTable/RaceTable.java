@@ -11,6 +11,7 @@ public class RaceTable {
     private int length;
     private int round;
     private int championship;
+    private String raceType;
 
     public RaceTable(Track track, Race race, Championship championship) {
         this.trackName = track.getName();
@@ -19,6 +20,8 @@ public class RaceTable {
         this.length = track.getLength();
         this.round = race.getRound();
         this.championship = championship.getYear();
+        if (race.isSprintRace()) raceType = "Sprint";
+        else raceType = "Long";
     }
 
     public String getTrackName() {
@@ -44,4 +47,6 @@ public class RaceTable {
     public int getChampionship() {
         return this.championship;
     }
+
+    public String getRaceType() {return this.raceType;}
 }

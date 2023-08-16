@@ -35,6 +35,18 @@ public class Race {
         this.round = round;
     }
 
+    @Basic
+    @Column(name = "sprintRace")
+    private boolean sprintRace;
+
+    public boolean isSprintRace() {
+        return this.sprintRace;
+    }
+
+    public void setSprintRace(boolean sprintRace) {
+        this.sprintRace = sprintRace;
+    }
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "track_trackId")

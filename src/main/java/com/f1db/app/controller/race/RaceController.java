@@ -10,8 +10,9 @@ import java.util.List;
 
 public interface RaceController extends Controller {
     void addChampionship(int year);
-    void addRace(int championship, String laps, String round, String track);
+    void addRace(int championship, String laps, String round, String track, boolean sprintRace);
     List<Race> getRaceByYear(int year);
     Track getTrackByRace(Race race);
     List<RaceTable> getRaceTableList();
+    String getRaceType(boolean raceType);
 }

@@ -102,10 +102,11 @@ public class QueryManager {
 
     public void addRace(Race race) {
         transaction.begin();
-        entityManager.createNativeQuery("INSERT INTO race (laps, round, track_trackId, championship_championshipId)" +
-                "VALUES (:laps, :round, :track, :championship)")
+        entityManager.createNativeQuery("INSERT INTO race (laps, round, sprintRace, track_trackId, championship_championshipId)" +
+                "VALUES (:laps, :round, :sprintRace, :track, :championship)")
                 .setParameter("laps", race.getLaps())
                 .setParameter("round", race.getRound())
+                .setParameter("sprintRace", race.isSprintRace())
                 .setParameter("track", race.getTrack())
                 .setParameter("championship", race.getChampionship())
                 .executeUpdate();
@@ -196,11 +197,6 @@ public class QueryManager {
 
     public List<Car> getAllCar() {
         return entityManager.createNativeQuery("SELECT * FROM car", Car.class)
-                .getResultList();
-    }
-
-    public List<Race> getLastRace() {
-        return entityManager.createNativeQuery("SELECT * FROM race WHERE raceId = LAST_INSERT_ID()")
                 .getResultList();
     }
 

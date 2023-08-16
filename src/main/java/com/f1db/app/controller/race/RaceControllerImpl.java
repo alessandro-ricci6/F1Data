@@ -16,7 +16,7 @@ public class RaceControllerImpl extends ControllerImpl implements RaceController
     }
 
     @Override
-    public void addRace(int championship, String laps, String round, String track) {
+    public void addRace(int championship, String laps, String round, String track, boolean sprintRace) {
         Race race = new Race();
         for (var c :this.getQueryManager().getAllChampionship()){
             if(c.getYear() == championship){
@@ -25,6 +25,7 @@ public class RaceControllerImpl extends ControllerImpl implements RaceController
         }
         race.setLaps(Integer.parseInt(laps));
         race.setRound(Integer.parseInt(round));
+        race.setSprintRace(sprintRace);
         for(var t : this.getQueryManager().getAllTrack()){
             if(t.getName().equals(track)){
                 race.setTrack(t.getTrackId());
@@ -62,5 +63,10 @@ public class RaceControllerImpl extends ControllerImpl implements RaceController
             });
         });
         return outList;
+    }
+
+    public String getRaceType(boolean raceType){
+        if(raceType) return "Sprint";
+        else return "Long";
     }
 }

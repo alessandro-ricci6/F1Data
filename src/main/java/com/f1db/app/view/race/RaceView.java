@@ -70,6 +70,13 @@ public class RaceView extends AbstractFXView {
     @FXML
     private TableColumn<RaceTable, String> trackColumn;
 
+    @FXML
+    private TableColumn<RaceTable, String> typeColumn;
+
+    @FXML
+    private CheckBox sprintRace;
+
+
     @Override
     public void init() {
         initRaceTable();
@@ -84,13 +91,15 @@ public class RaceView extends AbstractFXView {
         lapsColumn.setCellValueFactory(new PropertyValueFactory<>("laps"));
         lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
         roundColumn.setCellValueFactory(new PropertyValueFactory<>("round"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("raceType"));
         championshipColumn.setCellValueFactory(new PropertyValueFactory<>("championship"));
-        trackColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
-        locationColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
-        lapsColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
-        lengthColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
-        roundColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
-        championshipColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(6));
+        trackColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(7));
+        locationColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(7));
+        lapsColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(7));
+        lengthColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(7));
+        roundColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(7));
+        typeColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(7));
+        championshipColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(7));
         raceTable.setItems(FXCollections.observableList(this.getRaceController().getRaceTableList()));
     }
 
@@ -135,16 +144,26 @@ public class RaceView extends AbstractFXView {
     private void initRaceChoice(int year) {
         List<Race> raceList = this.getRaceController().getRaceByYear(year);
         List<String> nameList = new ArrayList<>();
-        raceList.forEach(r -> nameList.add(this.getRaceController().getTrackByRace(r).getName()));
+        raceList.forEach(r -> nameList.add(this.getRaceController().getRaceType(r.isSprintRace()) +
+                " - " + this.getRaceController().getTrackByRace(r).getName()));
         choiceRace.setItems(FXCollections.observableList(nameList));
         choiceRace.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->{
             Race selRace = new Race();
+            String type = newValue.substring(0, newValue.indexOf("-")-1).trim();
+            String name = newValue.substring(newValue.indexOf("-") + 1).trim();
             for(var r : this.getRaceController().getQueryManager().getAllRaces()){
-                if(this.getRaceController().getTrackByRace(r).getName().equals(newValue)){
+                if(this.getRaceController().getTrackByRace(r).getName().equals(name)
+                && r.isSprintRace() == sprintCheck(type)){
                     selRace = r;
+                    System.out.println(r.getTrack());
                 }
             }
             initStandingTable(selRace);});
+    }
+
+    private boolean sprintCheck(String type) {
+        if(type.equals("Sprint")) return true;
+        else return false;
     }
 
 
@@ -166,7 +185,8 @@ public class RaceView extends AbstractFXView {
 
     @FXML
     void onNextClick() {
-        this.getRaceController().addRace(inputChampionship.getValue(), inputLaps.getText(), inputRound.getText(), inputTrack.getValue());
+        this.getRaceController().addRace(inputChampionship.getValue(), inputLaps.getText(),
+                inputRound.getText(), inputTrack.getValue(), sprintRace.isSelected());
         SceneManager.getInstance().switchPage(new Stage(), Pages.STANDING);
     }
 
