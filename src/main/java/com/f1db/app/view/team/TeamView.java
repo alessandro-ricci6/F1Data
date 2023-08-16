@@ -8,8 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TeamView extends AbstractFXView {
 
@@ -46,6 +44,37 @@ public class TeamView extends AbstractFXView {
     @FXML
     private TextField inputCarName;
 
+    @FXML
+    private TableColumn<?, ?> directorNameColumn;
+
+    @FXML
+    private TableColumn<?, ?> directorNationalityColumn;
+
+    @FXML
+    private TableColumn<?, ?> roleColumn;
+
+    @FXML
+    private TableColumn<?, ?> surnameColumn;
+
+    @FXML
+    private TableView<?> directorTable;
+
+    @FXML
+    private TextField dirNameInput;
+
+    @FXML
+    private TextField dirNatInput;
+
+    @FXML
+    private ChoiceBox<String> dirRoleInput;
+
+    @FXML
+    private TextField dirSurnInput;
+
+    @FXML
+    private ChoiceBox<String> dirTeamInput;
+
+
     @Override
     public void init() {
         initTeamTable();
@@ -78,6 +107,13 @@ public class TeamView extends AbstractFXView {
     @FXML
     void onRaceClick() {
         SceneManager.getInstance().switchPage(this.getStage(), Pages.RACE);
+    }
+
+    @FXML
+    void onAddDirClick(){
+        this.getTeamController().addDir(dirNameInput.getText(), dirSurnInput.getText(), dirNatInput.getText(),
+                dirRoleInput.getValue(), dirTeamInput.getValue());
+        init();
     }
 
     @FXML

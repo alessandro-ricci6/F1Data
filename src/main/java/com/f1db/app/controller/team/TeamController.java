@@ -12,4 +12,5 @@ public interface TeamController extends Controller {
     void addCar(String name, String powerUnit, String teamName);
     List<String> getDriver();
     List<TeamCarTable> getTeamTable();
+    void addDir(String name, String surname, String nationality, String role, String team);
 }

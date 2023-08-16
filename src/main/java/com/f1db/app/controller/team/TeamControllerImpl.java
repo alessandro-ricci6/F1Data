@@ -3,6 +3,7 @@ package com.f1db.app.controller.team;
 import com.f1db.app.controller.ControllerImpl;
 import com.f1db.app.model.mixedTable.TeamCarTable;
 import com.f1db.entity.Car;
+import com.f1db.entity.Director;
 import com.f1db.entity.Team;
 
 import java.util.ArrayList;
@@ -50,5 +51,18 @@ public class TeamControllerImpl extends ControllerImpl implements TeamController
             }
         }
         return outList;
+    }
+
+    @Override
+    public void addDir(String name, String surname, String nationality, String role, String team) {
+        Director director = new Director();
+        director.setRole(role);
+        director.setName(name);
+        director.setSurname(surname);
+        director.setNationality(nationality);
+        for (var t : this.getQueryManager().getAllTeam()){
+            if(t.getName().equals(team)) director.setTeam(t.getTeamId());
+        }
+        this.getQueryManager().addDirector(director);
     }
 }
