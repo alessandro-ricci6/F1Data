@@ -58,6 +58,9 @@ public class EngineerView extends AbstractFXView {
         SceneManager.getInstance().switchPage(this.getStage(), Pages.TEAM);
     }
 
+    @FXML
+    private void onChampionshipClick() {SceneManager.getInstance().switchPage(this.getStage(), Pages.CHAMPIONSHIP);}
+
     @Override
     public void init() {
         initEngineerTable();

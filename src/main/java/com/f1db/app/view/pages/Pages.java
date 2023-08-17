@@ -2,6 +2,7 @@ package com.f1db.app.view.pages;
 
 
 import com.f1db.app.controller.Controller;
+import com.f1db.app.controller.championship.ChampionshipControllerImpl;
 import com.f1db.app.controller.driver.DriverControllerImpl;
 import com.f1db.app.controller.engineer.EngineerControllerImpl;
 import com.f1db.app.controller.race.RaceControllerImpl;
@@ -13,6 +14,7 @@ import com.f1db.app.controller.track.TrackControllerImpl;
  * Enum containing all availbale pages.
  */
 public enum Pages {
+    CHAMPIONSHIP("ChampionshipView.fxml", new ChampionshipControllerImpl()),
     TRACK("TrackView.fxml", new TrackControllerImpl()),
     TEAM("TeamView.fxml", new TeamControllerImpl()),
     STANDING("StandingView.fxml", new StandingControllerImpl()),

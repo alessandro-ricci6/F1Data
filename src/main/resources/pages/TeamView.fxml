@@ -18,11 +18,12 @@
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="File">
+        <Menu mnemonicParsing="false" text="Menu">
           <items>
             <MenuItem mnemonicParsing="false" onAction="#onDriverClick" text="Driver" />
             <MenuItem mnemonicParsing="false" onAction="#onEngineerClick" text="Engineer" />
             <MenuItem mnemonicParsing="false" onAction="#onRaceClick" text="Races" />
+                  <MenuItem mnemonicParsing="false" onAction="#onChampionshipClick" text="Championship" />
           </items>
         </Menu>
       </menus>

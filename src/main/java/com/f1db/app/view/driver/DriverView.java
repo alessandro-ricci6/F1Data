@@ -223,6 +223,9 @@ public class DriverView extends AbstractFXView {
         SceneManager.getInstance().switchPage(this.getStage(), Pages.TEAM);
     }
 
+    @FXML
+    private void onChampionshipClick() {SceneManager.getInstance().switchPage(this.getStage(), Pages.CHAMPIONSHIP);}
+
     private DriverController getDriverController() {
         return (DriverController) this.getController();
     }

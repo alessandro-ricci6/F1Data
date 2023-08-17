@@ -141,6 +141,9 @@ public class TeamView extends AbstractFXView {
     }
 
     @FXML
+    private void onChampionshipClick() {SceneManager.getInstance().switchPage(this.getStage(), Pages.CHAMPIONSHIP);}
+
+    @FXML
     void onAddDirClick(){
         this.getTeamController().addDir(dirNameInput.getText(), dirSurnInput.getText(), dirNatInput.getText(),
                 dirRoleInput.getValue(), dirTeamInput.getValue());

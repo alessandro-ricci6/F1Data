@@ -24,6 +24,7 @@
             <MenuItem mnemonicParsing="false" onAction="#onDriverClick" text="Driver" />
             <MenuItem mnemonicParsing="false" onAction="#onTeamClick" text="Team" />
                   <MenuItem mnemonicParsing="false" onAction="#onEngineerClick" text="Engineer" />
+                  <MenuItem mnemonicParsing="false" onAction="#onChampionshipClick" text="Championship" />
           </items>
         </Menu>
       </menus>
