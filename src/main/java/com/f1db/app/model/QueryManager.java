@@ -216,4 +216,13 @@ public class QueryManager {
         transaction.commit();
     }
 
+    public void deleteContract (Contract contract) {
+        transaction.begin();
+        entityManager.createNativeQuery("DELETE FROM contract WHERE team_teamId = :teamId and driver_driverId = :driverId")
+                .setParameter("teamId", contract.getTeam())
+                .setParameter("driverId", contract.getDriver())
+                .executeUpdate();
+        transaction.commit();
+    }
+
 }

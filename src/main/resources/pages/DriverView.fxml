@@ -105,6 +105,7 @@
                               <Text layoutX="425.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiration Year" />
                               <Text layoutX="270.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Team" />
                               <Text layoutX="89.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Driver" />
+                              <Button layoutX="550.0" layoutY="18.0" mnemonicParsing="false" onAction="#onRemoveClick" prefHeight="25.0" prefWidth="60.0" text="Remove" />
                            </children>
                         </AnchorPane>
                      </content>

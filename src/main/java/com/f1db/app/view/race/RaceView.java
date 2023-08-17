@@ -101,6 +101,7 @@ public class RaceView extends AbstractFXView {
         typeColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(7));
         championshipColumn.prefWidthProperty().bind(raceTable.widthProperty().divide(7));
         raceTable.setItems(FXCollections.observableList(this.getRaceController().getRaceTableList()));
+        raceTable.getSortOrder().add(roundColumn);
     }
 
     private void initStandingTable(Race race) {

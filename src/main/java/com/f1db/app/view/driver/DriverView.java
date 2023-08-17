@@ -184,6 +184,12 @@ public class DriverView extends AbstractFXView {
     }
 
     @FXML
+    void onRemoveClick() {
+        this.getDriverController().removeContract(contractTable.getSelectionModel().getSelectedItem());
+        initContractTable();
+    }
+
+    @FXML
     void onAddButton() {
         int engId = 0;
         for (var eng : this.getDriverController().getQueryManager().getAllEngineer()) {

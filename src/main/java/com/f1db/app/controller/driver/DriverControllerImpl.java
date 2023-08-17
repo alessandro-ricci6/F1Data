@@ -76,6 +76,19 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
         return outList;
     }
 
+    @Override
+    public void removeContract(ContractTable contractTable) {
+        Contract contract = new Contract();
+        this.getQueryManager().getAllTeam().forEach(t -> {
+            if(t.getName().equals(contractTable.getTeam())) contract.setTeam(t.getTeamId());
+        });
+        this.getQueryManager().getAllDriver().forEach(d -> {
+            if((d.getSurname() + " " + d.getName()).equals(contractTable.getDriver()))
+                contract.setDriver(d.getDriverId());
+        });
+        this.getQueryManager().deleteContract(contract);
+    }
+
     private int getRound(int id) {
         for (var r : this.getQueryManager().getAllRaces()) {
             if(r.getRaceId() == id){
@@ -94,4 +107,6 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
         }
         return false;
     }
+
+
 }

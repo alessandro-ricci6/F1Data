@@ -58,13 +58,13 @@
                            <children>
                               <TableView fx:id="raceTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                 <columns>
+                                    <TableColumn fx:id="roundColumn" prefWidth="105.0" text="Round" />
                                   <TableColumn fx:id="trackColumn" prefWidth="105.0" text="Track Name" />
                                   <TableColumn fx:id="locationColumn" prefWidth="105.0" text="Track Location" />
                                     <TableColumn fx:id="lapsColumn" prefWidth="105.0" text="Laps" />
                                     <TableColumn fx:id="lengthColumn" prefWidth="105.0" text="Lap Length(m)" />
-                                    <TableColumn fx:id="roundColumn" prefWidth="105.0" text="Round" />
-                                    <TableColumn fx:id="championshipColumn" prefWidth="105.0" text="Championship" />
                                     <TableColumn fx:id="typeColumn" prefWidth="75.0" text="Race type" />
+                                    <TableColumn fx:id="championshipColumn" prefWidth="105.0" text="Championship" />
                                 </columns>
                               </TableView>
                            </children>

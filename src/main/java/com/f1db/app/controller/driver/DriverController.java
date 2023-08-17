@@ -15,4 +15,5 @@ public interface DriverController extends Controller {
     void addContract(String driver, String team, int year);
     List<Pair<Integer, Integer>> getDriverStanding(String driver);
     List<ContractTable> getContractTableList();
+    void removeContract(ContractTable contractTable);
 }
