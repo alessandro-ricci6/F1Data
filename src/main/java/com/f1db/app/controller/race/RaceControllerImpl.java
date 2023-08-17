@@ -36,7 +36,6 @@ public class RaceControllerImpl extends ControllerImpl implements RaceController
 
     @Override
     public List<Race> getRaceByYear(int year) {
-        System.out.println(this.getQueryManager().getRaceByYear(year).get(0).getClass() + "af");
         return this.getQueryManager().getRaceByYear(year);
     }
 

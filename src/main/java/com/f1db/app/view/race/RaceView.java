@@ -107,7 +107,7 @@ public class RaceView extends AbstractFXView {
     private void initStandingTable(Race race) {
         positionColumn.setCellValueFactory(new PropertyValueFactory<>("position"));
         pointsColumn.setCellValueFactory(new PropertyValueFactory<>("points"));
-        driverColumn.setCellValueFactory(new PropertyValueFactory<>("driver"));
+        driverColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         positionColumn.prefWidthProperty().bind(standingTable.widthProperty().divide(3));
         pointsColumn.prefWidthProperty().bind(standingTable.widthProperty().divide(3));
         driverColumn.prefWidthProperty().bind(standingTable.widthProperty().divide(3));
@@ -156,7 +156,6 @@ public class RaceView extends AbstractFXView {
                 if(this.getRaceController().getTrackByRace(r).getName().equals(name)
                 && r.isSprintRace() == sprintCheck(type)){
                     selRace = r;
-                    System.out.println(r.getTrack());
                 }
             }
             initStandingTable(selRace);});
