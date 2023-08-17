@@ -1,6 +1,7 @@
 package com.f1db.app.controller.team;
 
 import com.f1db.app.controller.Controller;
+import com.f1db.app.model.mixedTable.DirTeamTable;
 import com.f1db.app.model.mixedTable.TeamCarTable;
 import com.f1db.entity.Car;
 import com.f1db.entity.Team;
@@ -13,4 +14,6 @@ public interface TeamController extends Controller {
     List<String> getDriver();
     List<TeamCarTable> getTeamTable();
     void addDir(String name, String surname, String nationality, String role, String team);
+    List<DirTeamTable> getDirTable();
+    List<String> getTeamList();
 }

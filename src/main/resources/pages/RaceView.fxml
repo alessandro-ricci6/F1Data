@@ -75,7 +75,7 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="standingTable" layoutX="201.0" layoutY="-1.0" prefHeight="347.0" prefWidth="439.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                              <TableView fx:id="standingTable" layoutX="201.0" layoutY="-1.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                                 <columns>
                                   <TableColumn fx:id="positionColumn" prefWidth="155.0" text="Position" />
                                   <TableColumn fx:id="driverColumn" prefWidth="155.0" text="Driver" />

@@ -76,6 +76,7 @@
                                     <TableColumn fx:id="surnameColumn" prefWidth="157.0" text="Surname" />
                                     <TableColumn fx:id="roleColumn" prefWidth="157.0" text="Role" />
                                     <TableColumn fx:id="directorNationalityColumn" prefWidth="157.0" text="Nationality" />
+                                    <TableColumn fx:id="dirTeamColumn" prefWidth="75.0" text="Team" />
                                  </columns>
                               </TableView>
                               <TextField fx:id="dirNameInput" layoutX="34.0" layoutY="14.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="30.0" />

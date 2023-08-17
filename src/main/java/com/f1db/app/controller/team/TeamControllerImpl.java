@@ -1,6 +1,7 @@
 package com.f1db.app.controller.team;
 
 import com.f1db.app.controller.ControllerImpl;
+import com.f1db.app.model.mixedTable.DirTeamTable;
 import com.f1db.app.model.mixedTable.TeamCarTable;
 import com.f1db.entity.Car;
 import com.f1db.entity.Director;
@@ -64,5 +65,22 @@ public class TeamControllerImpl extends ControllerImpl implements TeamController
             if(t.getName().equals(team)) director.setTeam(t.getTeamId());
         }
         this.getQueryManager().addDirector(director);
+    }
+
+    @Override
+    public List<DirTeamTable> getDirTable() {
+        List<DirTeamTable> outlist = new ArrayList<>();
+        this.getQueryManager().getAlldirectors().forEach(d -> {
+            this.getQueryManager().getAllTeam().forEach(t -> {
+                if(d.getTeam() == t.getTeamId()) outlist.add(new DirTeamTable(d, t));
+            });
+        });
+
+        return outlist;
+    }
+
+    @Override
+    public List<String> getTeamList() {
+        return this.getQueryManager().getAllTeam().stream().map(Team::getName).toList();
     }
 }
