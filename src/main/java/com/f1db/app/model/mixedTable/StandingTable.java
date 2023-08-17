@@ -3,21 +3,21 @@ package com.f1db.app.model.mixedTable;
 import com.f1db.entity.Driver;
 import com.f1db.entity.Standing;
 
-public class DriverStandingTable {
+public class StandingTable {
     private double points;
     private int position;
-    private String driver;
+    private String name;
 
-    public DriverStandingTable(Standing standing, Driver driver){
+    public StandingTable(Standing standing, Driver name){
         this.points = standing.getPoints();
         this.position = standing.getPosition();
-        this.driver = driver.getSurname() + " " + driver.getName();
+        this.name = name.getSurname() + " " + name.getName();
     }
 
-    public DriverStandingTable(Double points, int position, String driver) {
+    public StandingTable(Double points, int position, String name) {
         this.points = points;
         this.position = position;
-        this.driver = driver;
+        this.name = name;
     }
 
     public double getPoints() {
@@ -28,7 +28,7 @@ public class DriverStandingTable {
         return this.position;
     }
 
-    public String getDriver() {
-        return this.driver;
+    public String getName() {
+        return this.name;
     }
 }
