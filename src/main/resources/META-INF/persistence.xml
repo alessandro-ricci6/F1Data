@@ -19,20 +19,20 @@
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/myf1db"/>
             <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="toplink.jdbc.user" value="root"/>
-            <property name="toplink.jdbc.password" value="060901"/>
+            <property name="toplink.jdbc.user" value="ale"/>
+            <property name="toplink.jdbc.password" value="Ale060901"/>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/myf1db"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="hibernate.connection.username" value="root"/>
-            <property name="hibernate.connection.password" value="060901"/>
+            <property name="hibernate.connection.username" value="ale"/>
+            <property name="hibernate.connection.password" value="Ale060901"/>
             <property name="openjpa.ConnectionURL" value="jdbc:mysql://localhost:3306/myf1db"/>
             <property name="openjpa.ConnectionDriverName" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="openjpa.ConnectionUserName" value="root"/>
-            <property name="openjpa.ConnectionPassword" value="060901"/>
+            <property name="openjpa.ConnectionUserName" value="ale"/>
+            <property name="openjpa.ConnectionPassword" value="Ale060901"/>
             <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/myf1db"/>
             <property name="eclipselink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="eclipselink.jdbc.user" value="root"/>
-            <property name="eclipselink.jdbc.password" value="060901"/>
+            <property name="eclipselink.jdbc.user" value="ale"/>
+            <property name="eclipselink.jdbc.password" value="Ale060901"/>
             <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
         </properties>
     </persistence-unit>
