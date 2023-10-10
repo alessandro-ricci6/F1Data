@@ -39,6 +39,12 @@ public class Contract {
     }
 
     @Basic
+    @Column(name = "signing")
+    private int signing;
+    public int getSigning() { return signing; }
+    public void setSigning(int signing) { this.signing = signing; }
+
+    @Basic
     @Column(name = "expiration")
     private int expiration;
     public int getExpiration() {

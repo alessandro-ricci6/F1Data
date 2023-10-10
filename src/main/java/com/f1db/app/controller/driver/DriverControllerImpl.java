@@ -26,7 +26,7 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
     }
 
     @Override
-    public void addContract(String driver, String team, int year) {
+    public void addContract(String driver, String team, int expYear, int signYear) {
         int driverId = 0;
         int teamId = 0;
         Contract contract = new Contract();
@@ -42,7 +42,8 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
         }
         contract.setDriver(driverId);
         contract.setTeam(teamId);
-        contract.setExpiration(year);
+        contract.setSigning(signYear);
+        contract.setExpiration(expYear);
         if(checkIfContractExist(driverId, teamId)) {
             this.getQueryManager().updateContract(contract);
         } else {

@@ -17,7 +17,7 @@ public class ChampionshipControllerImpl extends ControllerImpl implements Champi
             double points = 0.0;
             for(var c : this.getQueryManager().getAllContract()){
                 for(var d : this.getQueryManager().getAllDriver()){
-                    if(c.getTeam() == t.getTeamId() && c.getDriver() == d.getDriverId()){
+                    if(c.getTeam() == t.getTeamId() && c.getDriver() == d.getDriverId() && c.getExpiration() > year && c.getSigning() <= year){
                         for(var dl : driverList){
                             if (dl.getName().equals(d.getSurname() + " " +d.getName()))
                                 points = points + dl.getPoints();

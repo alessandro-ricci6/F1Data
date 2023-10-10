@@ -54,11 +54,12 @@ public class QueryManager {
 
     public void addContract(Contract contract) {
         transaction.begin();
-        entityManager.createNativeQuery("INSERT INTO contract (driver_driverId, team_teamId, expiration)" +
-                "VALUES (:driver, :team, :expiration)")
+        entityManager.createNativeQuery("INSERT INTO contract (driver_driverId, team_teamId, expiration, signing)" +
+                "VALUES (:driver, :team, :expiration, :signing)")
                 .setParameter("driver", contract.getDriver())
                 .setParameter("team", contract.getTeam())
                 .setParameter("expiration", contract.getExpiration())
+                .setParameter("signing", contract.getSigning())
                 .executeUpdate();
         transaction.commit();
     }
@@ -199,10 +200,11 @@ public class QueryManager {
 
     public void updateContract (Contract contract) {
         transaction.begin();
-        entityManager.createNativeQuery("UPDATE contract SET team_teamId = :teamId, expiration = :expiration " +
+        entityManager.createNativeQuery("UPDATE contract SET team_teamId = :teamId, expiration = :expiration, signing = :signing " +
                 "WHERE driver_driverId = :driverId")
                 .setParameter("teamId", contract.getTeam())
                 .setParameter("expiration", contract.getExpiration())
+                .setParameter("signing", contract.getSigning())
                 .setParameter("driverId", contract.getDriver())
                 .executeUpdate();
         transaction.commit();

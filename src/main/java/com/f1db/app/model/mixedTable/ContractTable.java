@@ -5,19 +5,23 @@ import com.f1db.entity.Driver;
 import com.f1db.entity.Team;
 
 public class ContractTable {
-    private int year;
+    private int expYear;
+    private int signYear;
     private String driver;
     private String team;
 
     public ContractTable(Driver driver, Team team, Contract contract) {
         this.driver = driver.getSurname() + " " + driver.getName();
         this.team = team.getName();
-        this.year = contract.getExpiration();
+        this.expYear = contract.getExpiration();
+        this.signYear = contract.getSigning();
     }
 
-    public int getYear() {
-        return this.year;
+    public int getExpYear() {
+        return this.expYear;
     }
+
+    public int getSignYear() { return this.signYear; }
 
     public String getDriver() {
         return this.driver;

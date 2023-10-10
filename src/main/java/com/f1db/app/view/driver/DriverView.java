@@ -79,10 +79,16 @@ public class DriverView extends AbstractFXView {
     private TableColumn<ContractTable, Integer> expColumn;
 
     @FXML
+    private TableColumn<ContractTable, Integer> signColumn;
+
+    @FXML
     private ChoiceBox<String> teamChoice;
 
     @FXML
     private TextField inputYear;
+
+    @FXML
+    private TextField inputSign;
 
     @FXML
     private TableColumn<ContractTable, String> teamColumn;
@@ -120,10 +126,12 @@ public class DriverView extends AbstractFXView {
     private void initContractTable() {
         contractDriverColumn.setCellValueFactory(new PropertyValueFactory<>("driver"));
         teamColumn.setCellValueFactory(new PropertyValueFactory<>("team"));
-        expColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
-        contractDriverColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(3));
-        teamColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(3));
-        expColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(3));
+        expColumn.setCellValueFactory(new PropertyValueFactory<>("expYear"));
+        signColumn.setCellValueFactory(new PropertyValueFactory<>("signYear"));
+        contractDriverColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(4));
+        teamColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(4));
+        expColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(4));
+        signColumn.prefWidthProperty().bind(contractTable.widthProperty().divide(4));
         contractTable.setItems(FXCollections.observableList(this.getDriverController().getContractTableList()));
     }
 
@@ -179,7 +187,8 @@ public class DriverView extends AbstractFXView {
     @FXML
     void onAddContractClick() {
         this.getDriverController()
-                .addContract(driverChoice.getValue(), teamChoice.getValue(), Integer.parseInt(inputYear.getText()));
+                .addContract(driverChoice.getValue(), teamChoice.getValue(), Integer.parseInt(inputYear.getText()),
+                        Integer.parseInt(inputSign.getText()));
         initContractTable();
     }
 

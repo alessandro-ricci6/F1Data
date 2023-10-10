@@ -12,7 +12,7 @@ public interface DriverController extends Controller {
     List<Driver> getAllDriver();
     List<Contract> getAllContract();
     void addDriver(String name, String surname, String nationality, int number, int engineer);
-    void addContract(String driver, String team, int year);
+    void addContract(String driver, String team, int expYear, int signYear);
     List<Pair<Integer, Integer>> getDriverStanding(String driver);
     List<ContractTable> getContractTableList();
     void removeContract(ContractTable contractTable);
