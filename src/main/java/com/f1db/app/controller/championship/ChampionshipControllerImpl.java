@@ -3,6 +3,7 @@ package com.f1db.app.controller.championship;
 import com.f1db.app.controller.ControllerImpl;
 import com.f1db.app.model.mixedTable.StandingTable;
 import com.f1db.app.model.mixedTable.TeamChampTable;
+import com.f1db.entity.Contract;
 import com.f1db.entity.Race;
 
 import java.util.*;
@@ -35,10 +36,14 @@ public class ChampionshipControllerImpl extends ControllerImpl implements Champi
         Map<String, Double> unsortedMap = new HashMap<>();
         for (var d : this.getQueryManager().getAllDriver()){
             double point = 0;
-            for(var s : this.getQueryManager().getStandingByDriver(d.getDriverId())){
-                if(checkRace(year, s.getRace())) point = point + s.getPoints();
+            for (var c: this.getQueryManager().getAllContract()){
+                if(c.getDriver() == d.getDriverId() && c.getSigning() <= year && c.getExpiration() >= year){
+                    for(var s : this.getQueryManager().getStandingByDriver(d.getDriverId())){
+                        if(checkRace(year, s.getRace())) point = point + s.getPoints();
+                    }
+                    unsortedMap.put(d.getSurname() + " " + d.getName(), point);
+                }
             }
-            unsortedMap.put(d.getSurname() + " " + d.getName(), point);
         }
         return getList(unsortedMap);
     }
