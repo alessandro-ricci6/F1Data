@@ -73,6 +73,9 @@ public class DriverView extends AbstractFXView {
     private ChoiceBox<String> driverChoice;
 
     @FXML
+    private ChoiceBox<Integer> yearChoice;
+
+    @FXML
     private TableColumn<ContractTable, String> contractDriverColumn;
 
     @FXML
@@ -92,6 +95,8 @@ public class DriverView extends AbstractFXView {
 
     @FXML
     private TableColumn<ContractTable, String> teamColumn;
+
+    private int selYear;
 
     @Override
     public void init() {
@@ -153,16 +158,23 @@ public class DriverView extends AbstractFXView {
         driver1.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             driver2.setDisable(false);
             driver2.setItems(FXCollections.observableList(driverList));
-            initDriver1Chart(newValue);
+            initDriver1Chart(newValue, selYear);
         });
         driver2.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
-                initDriver2Chart(newValue));
+                initDriver2Chart(newValue, selYear));
         driver2.setDisable(true);
+
+        List<Integer> yearList = this.getDriverController().getYear();
+        yearChoice.setItems(FXCollections.observableList(yearList));
+        yearChoice.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                xAxis.setUpperBound(this.getDriverController().getRaceNumber(newValue));
+                selYear = newValue;;
+        });
     }
 
-    void initDriver1Chart(String driver) {
+    void initDriver1Chart(String driver, int year) {
         driverGraph.getData().remove(driver1Series);
-        List<Pair<Integer, Integer>> list = this.getDriverController().getDriverStanding(driver);
+        List<Pair<Integer, Integer>> list = this.getDriverController().getDriverStanding(driver, year);
         XYChart.Series<Number, Number> dataSeries = new XYChart.Series<>();
         dataSeries.setName(driver);
         for (var p : list){
@@ -172,9 +184,9 @@ public class DriverView extends AbstractFXView {
         this.driver1Series = dataSeries;
     }
 
-    void initDriver2Chart(String driver) {
+    void initDriver2Chart(String driver, int year) {
         driverGraph.getData().remove(driver2Series);
-        List<Pair<Integer, Integer>> list = this.getDriverController().getDriverStanding(driver);
+        List<Pair<Integer, Integer>> list = this.getDriverController().getDriverStanding(driver, year);
         XYChart.Series<Number, Number> dataSeries = new XYChart.Series<>();
         dataSeries.setName(driver);
         for (var p : list){

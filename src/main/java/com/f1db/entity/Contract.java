@@ -65,6 +65,7 @@ public class Contract {
         if(team != contract.team) return false;
         if(driver != contract.driver) return false;
         if(expiration != contract.expiration) return false;
+        if(signing != contract.signing) return false;
 
         return true;
     }

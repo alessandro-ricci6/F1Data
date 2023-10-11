@@ -52,12 +52,17 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
     }
 
     @Override
-    public List<Pair<Integer, Integer>> getDriverStanding(String driver) {
+    public List<Pair<Integer, Integer>> getDriverStanding(String driver, int year) {
         List<Pair<Integer, Integer>> outList = new ArrayList<>();
         for (var d : this.getQueryManager().getAllDriver()) {
             if((d.getSurname() + ", " + d.getName()).equals(driver)) {
-                this.getQueryManager().getStandingByDriver(d.getDriverId())
-                        .forEach(s -> outList.add(new Pair<>(getRound(s.getRace()), s.getPosition())));
+                for (var r: this.getQueryManager().getRaceByYear(year)) {
+                    for (var s: this.getQueryManager().getStandingByRace(r.getRaceId())){
+                        if (s.getDriver() == d.getDriverId()){
+                            outList.add(new Pair<>(getRound(s.getRace()), s.getPosition()));
+                        }
+                    }
+                }
             }
         }
         return outList;
@@ -90,6 +95,11 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
         this.getQueryManager().deleteContract(contract);
     }
 
+    @Override
+    public int getRaceNumber(int year) {
+        return this.getQueryManager().getRaceByYear(year).size();
+    }
+
     private int getRound(int id) {
         for (var r : this.getQueryManager().getAllRaces()) {
             if(r.getRaceId() == id){
@@ -109,5 +119,10 @@ public class DriverControllerImpl extends ControllerImpl implements DriverContro
         return false;
     }
 
-
+    @Override
+    public List<Integer> getYear() {
+        List<Integer> yearList = new ArrayList<>();
+        this.getQueryManager().getAllChampionship().forEach(c -> yearList.add(c.getYear()));
+        return yearList;
+    }
 }
